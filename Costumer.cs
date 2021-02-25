@@ -3,6 +3,10 @@ using System.Collections.Generic;
 namespace lab{
 
     class Costumer{
+        //should be deleted
+        string _test;
+
+
         string _firstName;
         string _lastName;
         string _email;
