@@ -8,6 +8,11 @@ namespace lab{
         string _description;
         string _basicCurrency;
 
+        double _balance;
+
+        List<BalanceState> _income = new List<BalanceState>();
+        List<BalanceState> _outcome = new List<BalanceState>();
+
         List<Costumer> owners = new List<Costumer>();
         List<Category> categories = new List<Category>();
 
@@ -21,7 +26,8 @@ namespace lab{
             BasicCurrency = bC;
             foreach(Category c in owner.GetCategories()){
                 categories.Add(c);
-            }
+            }           
+            _balance = _startBalance;
         }
 
         public string Name { get => _name; set => _name = value; }
@@ -38,10 +44,18 @@ namespace lab{
         }
 
         public void MakeTransaction(double sum, string currency, Category category, string description, DateTime date, string file = ""){
-            if((sum > 0 || sum <= _startBalance) && categories.Contains(category)){
+            if((sum > 0 || sum <= _balance) && categories.Contains(category)){
                 var transaction = new Transaction(sum, currency, category, date, description, file);
                 transactions.Add(transaction);
-                _startBalance += sum;
+                _balance += sum;
+                if(sum < 0){                   
+                    _outcome.Add(new BalanceState(-sum, date));
+                }else{
+                    _income.Add(new BalanceState(sum, date));
+                }
+
+        
+                
             }else{
                 Console.WriteLine("you don't have enough money or you've entered incorrect category");
             }
@@ -59,6 +73,27 @@ namespace lab{
                 if(i>= 0 && transactions[i] != null)
                     transactions[i].Show();
             }
+        }
+
+        public void ShowWalletInfo(){
+            double inc = 0;
+            double outc = 0;
+             
+            for(int i = 0; i < _income.Count; i++){
+               
+                if(DateTime.Now <= _income[i].Date.AddMonths(1)){
+                    inc+=_income[i].Sum;
+                }               
+            }
+            
+            for(int i = 0; i < _outcome.Count; i++){
+               
+               if(DateTime.Now <= _outcome[i].Date.AddMonths(1)){
+                    outc+=_outcome[i].Sum;
+                }              
+            }
+            
+            Console.WriteLine($"{_balance}, {inc}, {outc}");
         }
         
     }

@@ -17,8 +17,10 @@ namespace lab
             costumer.ShareWallet(costumer2, costumer.GetWallets()[0]);
 
             costumer.GetWallets()[0].MakeTransaction(100, "ukr grivna", costumer.GetCategories()[0], "test", DateTime.Now);
+            costumer.GetWallets()[0].MakeTransaction(-10, "ukr grivna", costumer.GetCategories()[0], "test", DateTime.Now);
            // Console.WriteLine(costumer.GetWallets()[0].transactions[0].Show()); 
             costumer.GetWallets()[0].ShowTransactions();
+            costumer.GetWallets()[0].ShowWalletInfo();
         }
     }
 }
