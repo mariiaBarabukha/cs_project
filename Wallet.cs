@@ -28,7 +28,9 @@ namespace lab{
                 categories.Add(c);
             }           
             _balance = _startBalance;
+            categories = owner.GetCategories();
         }
+        
 
         public string Name { get => _name; set => _name = value; }
         public double StartBalance { get => _startBalance; set => _startBalance = value; }
@@ -37,6 +39,15 @@ namespace lab{
 
         public List<Category> GetCategories(){
             return categories;
+        }
+
+        public bool AddCategory(Category category){
+            if(categories.Contains(category) || !owners[0].GetCategories().Contains(category)){
+                return false;
+            }else{
+                categories.Add(category);
+                return true;
+            }
         }
 
         public bool AddOwner(Costumer owner){
@@ -77,6 +88,10 @@ namespace lab{
                 
         }
 
+        public List<Transaction> GetTransactions(){
+            return transactions;
+        }
+
         public void ShowTransactions(){
             //Console.WriteLine(transactions.Capacity);
             for(int i = transactions.Count - 1; i > transactions.Count - 11; i --){
@@ -85,6 +100,14 @@ namespace lab{
             }
         }
 
+
+        public void ShowTransactions(int from){
+            //Console.WriteLine(transactions.Capacity);
+            for(int i = from+10; i > from; i --){
+                if(i>= 0 && transactions[i] != null)
+                    transactions[i].Show();
+            }
+        }
         public void ShowWalletInfo(){
             double inc = 0;
             double outc = 0;

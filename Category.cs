@@ -11,5 +11,9 @@ namespace lab{
             _color = color;
             _icon = icon;
         }
+
+        public Category CopyCategory(){
+            return new Category(_name, _description, _color, _icon);
+        }
     }
 }
