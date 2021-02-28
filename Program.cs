@@ -7,8 +7,8 @@ namespace lab
         static void Main(string[] args)
         {
             var costumer = new Costumer("Vasya", "Volk", "gfvolkvasya@gmail.com");
-            costumer.AddCategory("c1");
-            costumer.AddCategory("c2");
+            costumer.AddCategory("c1", "d1","red","rrrrrr");
+            costumer.AddCategory("c2", "d2","blue","aaaaa");
 
             costumer.AddWallet("wallet1", 2, "useless wallet", "ukr grivna");
 

@@ -2,11 +2,7 @@ using System.Collections.Generic;
 
 namespace lab{
 
-    class Costumer{
-        //should be deleted
-        string _test;
-
-
+    class Costumer{      
         string _firstName;
         string _lastName;
         string _email;
@@ -27,7 +23,7 @@ namespace lab{
 // провірити на коректність ім'я та прізвище
        
 
-        public void AddCategory(string name){
+        public bool AddCategory(string name, string description, string color, string icon){
             var check = true;
             foreach(Category c in categories){
                 if(c._name == name){
@@ -35,28 +31,49 @@ namespace lab{
                     break;
                 }
             }
-            if(check)
-             categories.Add(AvailableCategories.GetCategory(name));
+            if(check){
+                categories.Add(new Category(name,description,color,icon));                
+            }
+
+            return check;
+             
         }
 
         public List<Category> GetCategories(){
             return categories;
         }
 
-        public void AddWallet(string name, double sB, string description, string bC){
-            wallets.Add(new Wallet(this, name, sB,description, bC));
+        public bool AddWallet(string name, double sB, string description, string bC){
+            var check = true;
+            foreach(Wallet c in wallets){
+                if(c.Name == name){
+                    check = false;
+                    break;
+                }
+            }
+            if(check)
+                wallets.Add(new Wallet(this, name, sB,description, bC));
+            return check;
         }
 
-        public void AddWallet(Wallet wallet){
+        public bool AddWallet(Wallet wallet){
+            if(wallets.Contains(wallet)){
+                return false;
+            }
             wallets.Add(wallet);
             wallet.AddOwner(this);
+            return true;
         }
         public List<Wallet> GetWallets(){
             return wallets;
         }   
 
-        public void ShareWallet(Costumer costumer, Wallet wallet){
+        public bool ShareWallet(Costumer costumer, Wallet wallet){
+            if(costumer.GetWallets().Contains(wallet)){
+                return false;
+            }
             costumer.AddWallet(wallet);
+            return true;
         }
 
             

@@ -39,11 +39,15 @@ namespace lab{
             return categories;
         }
 
-        public void AddOwner(Costumer owner){
+        public bool AddOwner(Costumer owner){
+            if(owners.Contains(owner)){
+                return false;
+            }
             owners.Add(owner);
+            return true;
         }
 
-        public void MakeTransaction(double sum, string currency, Category category, string description, DateTime date, string file = ""){
+        public bool MakeTransaction(double sum, string currency, Category category, string description, DateTime date, string file = ""){
             if((sum > 0 || sum <= _balance) && categories.Contains(category)){
                 var transaction = new Transaction(sum, currency, category, date, description, file);
                 transactions.Add(transaction);
@@ -54,17 +58,23 @@ namespace lab{
                     _income.Add(new BalanceState(sum, date));
                 }
 
-        
+                return true;
                 
             }else{
                 Console.WriteLine("you don't have enough money or you've entered incorrect category");
+                return false;
             }
            
         }
 
-        public void RemoveTransaction(int n){
-            if(transactions[n] != null)
+        public bool RemoveTransaction(int n){
+            if(transactions[n] != null){
                 transactions.RemoveAt(n);
+                return true;
+            }
+
+            return false;
+                
         }
 
         public void ShowTransactions(){
