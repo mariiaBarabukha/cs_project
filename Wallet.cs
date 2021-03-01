@@ -16,7 +16,7 @@ namespace lab{
         List<Costumer> owners = new List<Costumer>();
         List<Category> categories = new List<Category>();
 
-        public List<Transaction> transactions = new List<Transaction>();
+        List<Transaction> transactions = new List<Transaction>();
 
         public Wallet(Costumer owner, string name, double sB, string description, string bC){
             owners.Add(owner);
