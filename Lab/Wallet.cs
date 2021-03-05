@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace lab
 {
-    class Wallet
+    public class Wallet
     {
         string _name;
         double _startBalance;
@@ -15,12 +15,12 @@ namespace lab
         List<BalanceState> _income = new List<BalanceState>();
         List<BalanceState> _outcome = new List<BalanceState>();
 
-        List<Costumer> owners = new List<Costumer>();
+        List<Customer> owners = new List<Customer>();
         List<Category> categories = new List<Category>();
 
         List<Transaction> transactions = new List<Transaction>();
 
-        public Wallet(Costumer owner, string name, double sB, string description, string bC)
+        public Wallet(Customer owner, string name, double sB, string description, string bC)
         {
             owners.Add(owner);
             Name = name;
@@ -59,7 +59,7 @@ namespace lab
             }
         }
 
-        public bool AddOwner(Costumer owner)
+        public bool AddOwner(Customer owner)
         {
             if (owners.Contains(owner))
             {

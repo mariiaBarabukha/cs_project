@@ -13,31 +13,36 @@ namespace lab{
 
         //if name is null, need to ask to recreate
         public Category(string name, string description, string color, string icon){
-            if(name == "")
+
+            while (name == "")
             {
-                Console.WriteLine("Entered name is invalid, try using another name:");
-                name = Console.ReadLine();
-
+                    Console.WriteLine("Enter a valid name for the category.");
+                    name = Console.ReadLine();
             }
-            _name = name;
-
-            _description = description;
-
-            if(color == "")
+                
+            if (color == "")
             {
                 color = "black";
             }
-            _color = color;
 
-            if(icon == "")
+            if (icon == "")
             {
                 icon = "default";
             }
-            _icon = icon;
+
+            Description = description;
+            _name = name;
+            Color = color;
+            Icon = icon;
+
         }
 
+        public string Description { get => _description; set => _description = value; }
+        public string Color { get => _color; set => _color = value; }
+        public string Icon { get => _icon; set => _icon = value; }
+
         public Category CopyCategory(){
-            return new Category(_name, _description, _color, _icon);
+            return new Category(_name, Description, Color, Icon);
         }
     }
 }

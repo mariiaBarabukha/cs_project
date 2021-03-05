@@ -1,7 +1,7 @@
 using System;
 
 namespace lab{
-    class Transaction{
+    public class Transaction{
         double _sum;
         string _currency;
         Category _category;

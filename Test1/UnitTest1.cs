@@ -6,6 +6,7 @@ namespace Test1
 {
     public class UnitTest1
     {
+     
         [Fact]
         public void TestCategoriesConstructor()
         {
@@ -15,7 +16,10 @@ namespace Test1
 
             //
             //
-            Assert.True(String.Equals(categoriesTest._name, expectedTest._name));
+            Assert.True(String.Equals(categoriesTest._name, expectedTest._name) &&
+                String.Equals(categoriesTest.Description, expectedTest.Description) &&
+                String.Equals(categoriesTest.Color, expectedTest.Color) &&
+                String.Equals(categoriesTest.Icon, expectedTest.Icon));
 
         }
 
@@ -30,7 +34,10 @@ namespace Test1
             copyTest = categoriesTest.CopyCategory();
 
             //
-            Assert.True(String.Equals(categoriesTest._name, copyTest._name));
+            Assert.True(String.Equals(categoriesTest._name, copyTest._name) &&
+                String.Equals(categoriesTest.Description, copyTest.Description) &&
+                String.Equals(categoriesTest.Color, copyTest.Color) &&
+                String.Equals(categoriesTest.Icon, copyTest.Icon));
         }
 
     }

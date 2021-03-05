@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System;
+using Lab;
 
 namespace lab{
 
-    class Costumer{      
+   public class Customer{      
         string _firstName;
         string _lastName;
         string _email;
@@ -14,11 +16,35 @@ namespace lab{
         public string LastName { get => _lastName; set => _lastName = value; }
         public string Email { get => _email; set => _email = value; }
 
-        public Costumer(string fN, string lN, string email){
+        public Customer(string fN, string lN, string email){
+
+            while ((Validity.checkValidity(fN) && Validity.checkValidity(lN) && Validity.checkValidityEmail(email)) == false)
+            {
+                if (Validity.checkValidity(fN) == false)
+                {
+                    Console.WriteLine("Enter a valid first name:");
+                    fN = Console.ReadLine();
+                }
+
+                if (Validity.checkValidity(lN) == false)
+                {
+                    Console.WriteLine("Enter a valid last name:");
+                    lN = Console.ReadLine();
+                }
+
+                if (Validity.checkValidityEmail(email) == false)
+                {
+                    Console.WriteLine("Enter a valid email:");
+                    email = Console.ReadLine();
+                }
+            }
+
             _firstName = fN;
             _lastName = lN;
             _email = email;
         }
+
+       
 
 // провірити на коректність ім'я та прізвище
        
@@ -39,6 +65,21 @@ namespace lab{
              
         }
 
+        public bool AddCategory(Category category)
+        {
+            var check = true;
+            if (categories.Contains(category))
+            {
+                check = false;
+            }
+            if (check)
+            {
+                categories.Add(category);
+            }
+
+            return check;
+
+        }
         public List<Category> GetCategories(){
             return categories;
         }
@@ -68,7 +109,7 @@ namespace lab{
             return wallets;
         }   
 
-        public bool ShareWallet(Costumer costumer, Wallet wallet){
+        public bool ShareWallet(Customer costumer, Wallet wallet){
             if(costumer.GetWallets().Contains(wallet)){
                 return false;
             }
