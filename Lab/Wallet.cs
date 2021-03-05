@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Lab;
 
 namespace lab
 {
@@ -23,6 +24,17 @@ namespace lab
         public Wallet(Customer owner, string name, double sB, string description, string bC)
         {
             owners.Add(owner);
+            while (name == "")
+            {
+                Console.WriteLine("Enter a valid name for the wallet.");
+                name = Console.ReadLine();
+            }
+
+            while (!Validity.checkValidityCurrency(bC))
+            {
+                Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
+                bC = Console.ReadLine();
+            }
             Name = name;
             StartBalance = sB;
             Description = description;

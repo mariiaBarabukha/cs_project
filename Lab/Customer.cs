@@ -110,11 +110,16 @@ namespace lab{
         }   
 
         public bool ShareWallet(Customer costumer, Wallet wallet){
-            if(costumer.GetWallets().Contains(wallet)){
+            if (costumer.GetWallets().Contains(wallet))
+            {
                 return false;
             }
-            costumer.AddWallet(wallet);
-            return true;
+            else
+            {
+                costumer.AddWallet(wallet);
+                return true;
+            }
+            
         }
 
             

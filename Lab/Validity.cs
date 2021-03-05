@@ -13,22 +13,34 @@ namespace Lab
             char[] badSymbols = {'@', '-', '_', '!', '?', '+', '=', ')',
                 '(', '*', '^', '$', '#', '"', '`', '~', '/', '\\', '.', ',', '|', '№', ';', '₴', '%', '&',
             '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-            if (input.IndexOfAny(badSymbols, 0) != -1 || input.Equals(""))
+            if (input.IndexOfAny(badSymbols, 0) == -1 )
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
         public static bool checkValidityEmail(string input)
         {
            
-            if ((input.IndexOf('@', 0) != -1 && input.IndexOf('.', 0) != -1) || input.Equals(""))
+            if ((input.IndexOf('@', 0) != -1 && input.IndexOf('.', 0) != -1))
             {
 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool checkValidityCurrency(string input)
+        {
+            if (input.Equals("UAH") || input.Equals("USD") || input.Equals("EUR"))
+            {
                 return true;
             }
             else
