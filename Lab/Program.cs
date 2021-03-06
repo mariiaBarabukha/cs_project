@@ -1,4 +1,6 @@
 ﻿using System;
+//-delete
+using Lab;
 
 namespace lab
 {
@@ -6,25 +8,9 @@ namespace lab
     {
         static void Main(string[] args)
         {
-            //test part-----------------
-            var test = new Category("assas", "", "", "");
-            char[] badSymbols = {'@', '-', '_', '!', '?', '+', '=', ')',
-                '(', '*', '^', '$', '#', '"', '`', '~', '/', '\\', '.', ',', '|', '№', ';', '₴', '%', '&'};
-            var test2 = new Customer("231@232", "", "");
-            //Console.WriteLine(test2.FirstName.IndexOfAny(badSymbols, 0));
-
-
-
-
-
-
-
-
-
-
-
+          
             //--------------------------
-            
+/*
             var costumer = new Customer("Vasya", "Volk", "gfvolkvasya@gmail.com");
             costumer.AddCategory("c1", "d1","red","rrrrrr");
             costumer.AddCategory("c2", "d2","blue","aaaaa");
@@ -39,7 +25,7 @@ namespace lab
             costumer.GetWallets()[0].MakeTransaction(-10, "ukr grivna", costumer.GetCategories()[0], "test", DateTime.Now);
            // Console.WriteLine(costumer.GetWallets()[0].transactions[0].Show()); 
             costumer.GetWallets()[0].ShowTransactions();
-            costumer.GetWallets()[0].ShowWalletInfo();
+            costumer.GetWallets()[0].ShowWalletInfo();*/
         }
     }
 }

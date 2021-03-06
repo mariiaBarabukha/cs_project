@@ -48,5 +48,39 @@ namespace Lab
                 return false;
             }
         }
+
+        private static bool checkValiditySum(string input)
+        {
+            char[] badSymbols = {'@', '-', '_', '!', '?', '+', '=', ')',
+                '(', '*', '^', '$', '#', '"', '`', '~', '/', '\\', ',', '|', '№', ';', '₴', '%', '&',
+            'q', 'w', 'e', 'r', 'd', 'f', 't', 'y', 'u', 'i' , 'o', 'p', '[', ']', 'a', 's', 'g', 'h', 'j', 'k', 'l', 'z'
+            , 'x', 'c', 'v', 'b', 'n', 'm', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы',
+            'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'
+
+            };
+            if (input.IndexOfAny(badSymbols, 0) == -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static double checkValidityTransaction(double sum)
+        {
+            while (sum == 0)
+            {
+                Console.WriteLine("Enter another sum, differed from 0 to make transaction:");
+                var input = Console.ReadLine();
+                if (!Validity.checkValiditySum(input))
+                {
+                    continue;
+                }
+                sum = Convert.ToDouble(input);
+            }
+            return sum;
+        }
     }
 }
