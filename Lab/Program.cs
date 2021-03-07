@@ -1,4 +1,6 @@
 ﻿using System;
+//-delete
+using Lab;
 
 namespace lab
 {
@@ -6,21 +8,34 @@ namespace lab
     {
         static void Main(string[] args)
         {
-            var costumer = new Costumer("Vasya", "Volk", "gfvolkvasya@gmail.com");
+          
+            //--------------------------
+/*
+            var costumer = new Customer("Vasya", "Volk", "gfvolkvasya@gmail.com");
             costumer.AddCategory("c1", "d1","red","rrrrrr");
             costumer.AddCategory("c2", "d2","blue","aaaaa");
 
             costumer.AddWallet("wallet1", 2, "useless wallet", "ukr grivna");
 
 
-            var costumer2 = new Costumer("Ari", "Aru", "mariia.barabukha@gmail.com");
+            var costumer2 = new Customer("Ari", "Aru", "mariia.barabukha@gmail.com");
             costumer.ShareWallet(costumer2, costumer.GetWallets()[0]);
 
             costumer.GetWallets()[0].MakeTransaction(100, "ukr grivna", costumer.GetCategories()[0], "test", DateTime.Now);
             costumer.GetWallets()[0].MakeTransaction(-10, "ukr grivna", costumer.GetCategories()[0], "test", DateTime.Now);
            // Console.WriteLine(costumer.GetWallets()[0].transactions[0].Show()); 
             costumer.GetWallets()[0].ShowTransactions();
-            costumer.GetWallets()[0].ShowWalletInfo();
+            costumer.GetWallets()[0].ShowWalletInfo();*/
+
+            var customer1 = new Customer("Ari", "Ari", "mariia.barabukha@gmail.com");
+            costumer.AddCategory("c1", "d1","red","rrrrrr");
+            customer1.AddWallet("wallet1", 100, "first wallet", "usa");            
+            customer1.GetWallets[0].MakeTransaction(-20, "usa", "c1", "first transaction", DateTime.Now);
+            customer1.GetWallets[0].MakeTransaction(100, "usa", "c1", "second transaction", (DateTime.Now).AddMonths(1));
+            customer1.GetWallets[0].MakeTransaction(-40, "usa", "c1", "second transaction", (DateTime.Now).AddMonths(2));
+            custumer1.GetWallets()[0].ShowTransactions();
+            custumer1.GetWallets()[0].ShowWalletInfo();
         }
+        
     }
 }

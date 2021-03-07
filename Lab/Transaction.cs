@@ -1,7 +1,10 @@
 using System;
+using Lab;
+using System.Reflection.Metadata;
+using System.IO;
 
 namespace lab{
-    class Transaction{
+    public class Transaction{
         double _sum;
         string _currency;
         Category _category;
@@ -11,7 +14,13 @@ namespace lab{
 
         public Transaction(double sum, string currency, Category category, DateTime date,
          string description, string file = ""){
-             Sum = sum;
+            Validity.checkValidityTransaction(sum);
+            Sum = sum;
+            while (!Validity.checkValidityCurrency(currency))
+            {
+                Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
+                currency = Console.ReadLine();
+            }
              Currency = currency;
              Category = category;
              Date = date;

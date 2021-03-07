@@ -1,7 +1,7 @@
 using System;
 
 namespace lab{
-    class BalanceState{
+    public class BalanceState{
         double _sum;
         DateTime _date;
 
