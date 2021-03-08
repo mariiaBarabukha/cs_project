@@ -28,13 +28,19 @@ namespace lab
             costumer.GetWallets()[0].ShowWalletInfo();*/
 
             var customer1 = new Customer("Ari", "Ari", "mariia.barabukha@gmail.com");
-            costumer.AddCategory("c1", "d1","red","rrrrrr");
-            customer1.AddWallet("wallet1", 100, "first wallet", "usa");            
-            customer1.GetWallets[0].MakeTransaction(-20, "usa", "c1", "first transaction", DateTime.Now);
-            customer1.GetWallets[0].MakeTransaction(100, "usa", "c1", "second transaction", (DateTime.Now).AddMonths(1));
-            customer1.GetWallets[0].MakeTransaction(-40, "usa", "c1", "second transaction", (DateTime.Now).AddMonths(2));
-            custumer1.GetWallets()[0].ShowTransactions();
-            custumer1.GetWallets()[0].ShowWalletInfo();
+            customer1.AddCategory("c1", "d1","red","rrrrrr");
+            customer1.AddWallet("wallet1", 100, "first wallet", "UAH");
+            customer1.GetWallets()[0].MakeTransaction(-20, "UAH", customer1.GetCategories()[0], "first transaction", DateTime.Now);
+            customer1.GetWallets()[0].MakeTransaction(100, "UAH", customer1.GetCategories()[0], "second transaction", (DateTime.Now).AddMonths(1));
+            customer1.GetWallets()[0].MakeTransaction(-40, "UAH", customer1.GetCategories()[0], "third transaction", (DateTime.Now).AddMonths(2));
+            customer1.GetWallets()[0].MakeTransaction(-30, "UAH", customer1.GetCategories()[0], "for testing remove", (DateTime.Now).AddMonths(2));
+            customer1.GetWallets()[0].RemoveTransaction(3);
+            customer1.GetWallets()[0].ShowTransactions();
+            customer1.GetWallets()[0].ShowWalletInfo();
+
+            var customer2 = new Customer("Vasya", "Volk", "gfvolkvasya@gmail.com");
+            customer1.ShareWallet(customer2, customer1.GetWallets()[0]);
+            customer2.GetWallets()[0].ShowWalletInfo();
         }
         
     }

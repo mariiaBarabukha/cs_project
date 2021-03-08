@@ -16,11 +16,11 @@ namespace lab{
          string description, string file = ""){
             Validity.checkValidityTransaction(sum);
             Sum = sum;
-            while (!Validity.checkValidityCurrency(currency))
-            {
-                Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
-                currency = Console.ReadLine();
-            }
+            //while (!Validity.checkValidityCurrency(currency))
+            //{
+            //    Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
+            //    currency = Console.ReadLine();
+            //}
              Currency = currency;
              Category = category;
              Date = date;

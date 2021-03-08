@@ -30,11 +30,11 @@ namespace lab
                 name = Console.ReadLine();
             }
             
-            while (!Validity.checkValidityCurrency(bC))
-            {
-                Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
-                bC = Console.ReadLine();
-            }
+            //while (!Validity.checkValidityCurrency(bC))
+            //{
+            //    Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
+            //    bC = "UAH";
+            //}
             Name = name;
             StartBalance = sB;
             Description = description;
