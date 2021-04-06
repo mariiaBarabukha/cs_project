@@ -7,17 +7,18 @@
         xmlns:acc="clr-namespace:GUI.Account"
         xmlns:authentication="clr-namespace:GUI.Authentication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
 
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="100"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <local:Header></local:Header>
+            <local:MainView Grid.Row="1"></local:MainView>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="100"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <local:Header></local:Header>
-        <local:MainView Grid.Row="1"></local:MainView>
+        </Grid>
+    </ScrollViewer>
 
-    </Grid>
-    
 </Window>

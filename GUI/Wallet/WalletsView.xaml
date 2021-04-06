@@ -18,7 +18,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Name="WalletsPanel"
-                    Width="400"
+                    Width="390"                    
                     Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
                     HorizontalAlignment="Center">
             <ListView ItemsSource="{Binding Wallets}"   
