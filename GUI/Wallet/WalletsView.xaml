@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="GUI.Wallets.WalletsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Wallets"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <DataTemplate DataType="{ x:Type local:WalletInfo}">
+            <local:WalletBrief></local:WalletBrief>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Name="WalletsPanel"
+                    Width="400"
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Center">
+            <ListView ItemsSource="{Binding Wallets}"   
+                      DisplayMemberPath="DisplayName"
+                      SelectedItem="{Binding CurrentWallet}"></ListView>
+            <Button VerticalAlignment="Bottom">+</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock>Name</TextBlock>
+            <TextBox Text="{Binding CurrentWallet.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock>Balance</TextBlock>
+            <TextBox Text="{Binding CurrentWallet.Balance, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Width="90" Height="40" 
+                    HorizontalAlignment="Right" 
+                    FontSize="15"                     
+                    Command="{Binding RemoveWalletCommand}">Remove</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,5 +1,4 @@
-﻿using GUI.Account;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,24 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace GUI.Wallets
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WalletBrief.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WalletBrief : UserControl
     {
-        AccountViewModel accountView;
-        public MainWindow()
-        {
-            accountView = new AccountViewModel();
-            this.DataContext = accountView;
-            InitializeComponent();
-            
-            
+        
+        public WalletBrief()
+        {           
 
+            InitializeComponent();
         }
     }
 }
