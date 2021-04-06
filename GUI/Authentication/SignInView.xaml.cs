@@ -10,10 +10,10 @@ namespace GUI.Authentication
     public partial class SignInView : UserControl
     {
         private SignInViewModel _viewModel;
-        public SignInView(Action gotoSignUp)
+        public SignInView(Action gotoSignUp, Action goToWallet)
         {
             InitializeComponent();
-            _viewModel = new SignInViewModel(gotoSignUp);
+            _viewModel = new SignInViewModel(gotoSignUp, goToWallet);
             this.DataContext = _viewModel;
       
         }

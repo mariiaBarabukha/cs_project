@@ -13,6 +13,7 @@ namespace GUI.Authentication
     {
         private AuthenticationUser _authUser = new AuthenticationUser();
         private Action _gotoSignUp;
+        private Action _goToWallet;
 
         public string Login
         {
@@ -45,11 +46,13 @@ namespace GUI.Authentication
         public DelegateCommand SignInCommand { get; }
 
         public DelegateCommand SignUpCommand { get; }
-        public SignInViewModel(Action gotoSignUp)
+
+        public SignInViewModel(Action gotoSignUp, Action goToWallet)
         {
             SignInCommand = new DelegateCommand(SignIn, IsSignInEnabled);
             _gotoSignUp = gotoSignUp;
             SignUpCommand = new DelegateCommand(_gotoSignUp);
+            _goToWallet = goToWallet;
 
         }
 
@@ -88,6 +91,7 @@ namespace GUI.Authentication
 
                 //testAppliance below
                 MessageBox.Show($"{ourCustomer.LastName} {ourCustomer.FirstName} {ourCustomer.Email}");
+                _goToWallet.Invoke();
             }
         }
 

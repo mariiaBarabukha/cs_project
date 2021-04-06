@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using GUI.Account;
 using GUI.Authentication;
 
 namespace GUI
@@ -12,7 +13,7 @@ namespace GUI
         public MainView()
         {
             InitializeComponent();
-            Content = new SignInView(GotoSignUp);
+            Content = new SignInView(GotoSignUp, GoToAccount);
         }
 
         public void GotoSignUp()
@@ -22,7 +23,17 @@ namespace GUI
 
         public void GotoSignIn()
         {
-            Content = new SignInView(GotoSignUp);
+            Content = new SignInView(GotoSignUp, GoToAccount);
+        }
+
+        public void GoToAccount()
+        {
+            Content = new AccountView(GoToAddWallet);
+        }
+
+        public void GoToAddWallet()
+        {
+            //TODO
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GUI.Account
     public partial class AccountView : UserControl
     {
         AccountViewModel accountViewModel;
-        public AccountView()
+        public AccountView(Action goToAddWallet)
         {
             InitializeComponent();
             accountViewModel = new AccountViewModel();
