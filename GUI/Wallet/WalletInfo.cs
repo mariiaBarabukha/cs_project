@@ -7,7 +7,7 @@ namespace GUI.Wallets
 {
     public class WalletInfo : BindableBase
     {
-        Wallet wallet;
+        lab.Wallet wallet;
         public string Name { 
             get { 
                 return wallet.Name;
@@ -39,7 +39,7 @@ namespace GUI.Wallets
                 return $"{wallet.Name} (${wallet.StartBalance})";
             }
         }
-        public WalletInfo(Wallet wallet)
+        public WalletInfo(lab.Wallet wallet)
         {
             this.wallet = wallet;
         }

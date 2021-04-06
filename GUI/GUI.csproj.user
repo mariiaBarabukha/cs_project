@@ -19,9 +19,12 @@
     <Compile Update="MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Wallet\AddWalletView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Authentication\SignUpView.xaml"/>
+    <Page Update="Authentication\SignUpView.xaml" />
     <Compile Update="Account\AccountView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Wallet\AddWalletView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Wallet\WalletBrief.xaml">

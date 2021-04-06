@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using GUI.Users;
 using lab;
+using GUI.DataBase;
 
 namespace GUI.Authentication
 {
@@ -79,8 +80,8 @@ namespace GUI.Authentication
                     return;
                 }
                 MessageBox.Show($"Sign in was successful for user {user.FirstName} {user.LastName}");
-                Customer ourCustomer = new Customer(user.FirstName, user.LastName, user.Email);
-
+                lab.Customer ourCustomer = new lab.Customer(user.FirstName, user.LastName, user.Email);
+                CurrentInfo.Customer = ourCustomer;
 
                 //string fileName = @"ourCustomers.txt";
                 //string path = Path.GetFullPath(fileName);

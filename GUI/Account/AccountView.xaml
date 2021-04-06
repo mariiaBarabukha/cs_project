@@ -22,7 +22,8 @@
             <TextBlock Name="UserLastName" Text="{Binding LastName}"></TextBlock>
         </StackPanel>
 
-
+        <Button Grid.ColumnSpan="2" Width="400" Height="20" HorizontalAlignment="Center" 
+                Command="{Binding GoToAddWalletCommand}">Add New Wallet</Button>
         <w:WalletsView Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"></w:WalletsView>
         
 

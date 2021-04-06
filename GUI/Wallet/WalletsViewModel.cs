@@ -1,4 +1,5 @@
-﻿using GUI.Navigation;
+﻿using GUI.DataBase;
+using GUI.Navigation;
 using GUI.Services;
 using lab;
 using Prism.Commands;
@@ -18,6 +19,8 @@ namespace GUI.Wallets
     {
         WalletInfo _currentWallet;
         public ObservableCollection<WalletInfo> Wallets { get; set; }
+
+        private Action _goToAddWallet;
         public WalletInfo CurrentWallet {
             get
             {
@@ -42,13 +45,15 @@ namespace GUI.Wallets
         private Customer customer;
 
         public DelegateCommand RemoveWalletCommand { get; }
+        
         public WalletsViewModel()
         {
+            
             //_service = new WalletService();
-            UserForTest user = new UserForTest();
-            customer = user.Customer;
+           // UserForTest user = new UserForTest();
+            customer = CurrentInfo.Customer;
             customer.AddWallet("w1", 100, "first", "USD");
-            customer.AddWallet("w2", 110, "Second", "USD");
+            //customer.AddWallet("w2", 110, "Second", "USD");
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);
             foreach (var wallet in customer.GetWallets())
@@ -61,6 +66,10 @@ namespace GUI.Wallets
         {
             Wallets.Remove(CurrentWallet);
         }
+
+       
+
+       
 
         public void ClearSensitiveData()
         {

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +13,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.Account
+namespace GUI.Wallet
 {
     /// <summary>
-    /// Interaction logic for AccountView.xaml
+    /// Interaction logic for AddWalletPage.xaml
     /// </summary>
-   
-    public partial class AccountView : UserControl
+    public partial class AddWalletView : UserControl
     {
-        AccountViewModel accountViewModel;
-        public AccountView(Action goToAddWallet)
+        AddWalletViewModel _view;
+        public AddWalletView(Action goToAccount)
         {
             InitializeComponent();
-            accountViewModel = new AccountViewModel(goToAddWallet);
-            this.DataContext = accountViewModel;
+            _view = new AddWalletViewModel(goToAccount);
+            this.DataContext = _view;
         }
     }
 }

@@ -24,7 +24,7 @@
             <ListView ItemsSource="{Binding Wallets}"   
                       DisplayMemberPath="DisplayName"
                       SelectedItem="{Binding CurrentWallet}"></ListView>
-            <Button VerticalAlignment="Bottom">+</Button>
+            
         </StackPanel>
         <StackPanel Grid.Row="1">
             <TextBlock>Name</TextBlock>
