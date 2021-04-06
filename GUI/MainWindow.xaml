@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         xmlns:acc="clr-namespace:GUI.Account"
+        xmlns:authentication="clr-namespace:GUI.Authentication"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <acc:AccountView></acc:AccountView>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="100"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <local:Header></local:Header>
+        <local:MainView Grid.Row="1"></local:MainView>
+
+    </Grid>
+    
 </Window>

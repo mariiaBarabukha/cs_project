@@ -15,16 +15,14 @@ using System.Windows.Shapes;
 
 namespace GUI.Wallets
 {
-    /// <summary>
-    /// Interaction logic for WalletBrief.xaml
-    /// </summary>
+
     public partial class WalletBrief : UserControl
     {
-        
-        public WalletBrief()
-        {           
 
+        public WalletBrief()
+        {
             InitializeComponent();
         }
+
     }
 }

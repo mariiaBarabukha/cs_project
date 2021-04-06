@@ -20,14 +20,12 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        AccountViewModel accountView;
+        
         public MainWindow()
         {
-            accountView = new AccountViewModel();
-            this.DataContext = accountView;
+           
             InitializeComponent();
-            
-            
+
 
         }
     }

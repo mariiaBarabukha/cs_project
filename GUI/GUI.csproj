@@ -14,4 +14,19 @@
     <ProjectReference Include="..\Lab\Lab.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Authentication\SignInView - Copy %282%29.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>SignInView.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Authentication\SignInView - Copy - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>SignInView - Copy.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Authentication\SignInView - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>SignInView.xaml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

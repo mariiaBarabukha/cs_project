@@ -7,6 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Authentication\SignUpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Header.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Authentication\SignInView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Authentication\SignUpView.xaml"/>
     <Compile Update="Account\AccountView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +40,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Header.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Authentication\SignInView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Wallet\WalletBrief.xaml">
