@@ -122,6 +122,18 @@ namespace lab{
             
         }
 
+        public void RemoveWallet(string name)
+        {
+            foreach (Wallet w in wallets)
+            {
+                if (w.Name == name)
+                {
+                    wallets.Remove(w);
+                    break;
+                }
+            }
+        }
+
             
     }
 }

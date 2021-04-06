@@ -10,6 +10,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
 
         </Grid.RowDefinitions>
@@ -17,14 +18,27 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBlock Name="UserFirstName" Text="{Binding FirstName}"></TextBlock>
-            <TextBlock Name="UserLastName" Text="{Binding LastName}"></TextBlock>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="../icons/user.png" Height="40" Grid.RowSpan="2" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" Margin="0 0 0 10"></Image>
+            
+            <TextBlock Name="UserFirstName" Text="{Binding FirstName}" Grid.Column="1"></TextBlock>
+            <TextBlock Name="UserLastName" Text="{Binding LastName}" Grid.Column="1" Grid.Row="1"></TextBlock>
+        </Grid>
 
-        <Button Grid.ColumnSpan="2" Width="400" Height="20" HorizontalAlignment="Center" 
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Width="400" Height="20" HorizontalAlignment="Center" 
+                Background="#dfdfde"
                 Command="{Binding GoToAddWalletCommand}">Add New Wallet</Button>
-        <w:WalletsView Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"></w:WalletsView>
+        <w:WalletsView Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"></w:WalletsView>
         
 
     </Grid>

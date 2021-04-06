@@ -26,8 +26,10 @@
             <TextBox Text="{Binding BasicCurrency, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <Button Grid.Row="1" Height="50" Width="100" 
+                Background="#8caba8"
                 Margin="10 10 10 10" Command="{Binding AddCommand}">Add</Button>
         <Button Grid.Row="1" Grid.Column="1" Height="50" Width="100" 
+                Background="#8caba8"
                 Margin="10 10 10 10" Command="{Binding CancelCommand}">Cancel</Button>
     </Grid>
 </UserControl>

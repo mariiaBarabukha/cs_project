@@ -64,7 +64,9 @@ namespace GUI.Wallets
 
         public void Remove()
         {
+            CurrentInfo.Customer.RemoveWallet(CurrentWallet.Name);
             Wallets.Remove(CurrentWallet);
+           
         }
 
        

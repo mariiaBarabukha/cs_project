@@ -51,8 +51,12 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
         
-        <Button Grid.Column="0" Margin="10,10,10,10" Width ="140"  Command="{Binding SignUpCommand}">Sign Up</Button>
-        <Button Grid.Column="1" Margin="10,10,10,10" Width ="140" Command="{Binding SignInCommand}">Go to Sign In</Button>
+        <Button Grid.Column="0" Margin="10,10,10,10" Width ="140"  
+                Background="#8caba8"
+                Command="{Binding SignUpCommand}">Sign Up</Button>
+        <Button Grid.Column="1" Margin="10,10,10,10" Width ="140" 
+                Background="#8caba8"
+                Command="{Binding SignInCommand}">Go to Sign In</Button>
         </Grid>
     </Grid>
 

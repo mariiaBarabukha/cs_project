@@ -13,7 +13,8 @@ namespace GUI.Wallets
                 return wallet.Name;
             } 
 
-            set { 
+            set {
+                
                 wallet.Name = value;
                 RaisePropertyChanged(nameof(DisplayName));
             } 

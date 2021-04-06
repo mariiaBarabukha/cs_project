@@ -33,8 +33,12 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Name="SignIn" Grid.Column="0" Margin="10,10,10,10" Width="140" Command="{Binding SignInCommand}">Sign In</Button>
-            <Button Grid.Column="1" Name ="SignUp" Margin="10,10,10,10" Width="140" Command ="{Binding SignUpCommand}">Go to Sign Up</Button>
+            <Button Name="SignIn" Grid.Column="0" Margin="10,10,10,10" 
+                    Width="140" Command="{Binding SignInCommand}"
+                    Background="#8caba8">Sign In</Button>
+            <Button Grid.Column="1" Name ="SignUp" Margin="10,10,10,10" 
+                    Width="140" Command ="{Binding SignUpCommand}"
+                    Background="#8caba8">Go to Sign Up</Button>
         </Grid>
        </Grid>
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GUI.Wallet
 {
@@ -105,12 +106,43 @@ namespace GUI.Wallet
         }
 
         public void Add()
+
         {
-            wallet = new lab.Wallet(CurrentInfo.Customer,Name, StartBalance,Description,BasicCurrency);
-            CurrentInfo.Customer.AddWallet(wallet);
-            _goToAccount.Invoke();
+            if (String.IsNullOrEmpty(Name)
+                || String.IsNullOrEmpty(BasicCurrency) || String.IsNullOrEmpty(Description))
+            {
+                MessageBox.Show("Some fields are empty");
+                
+            }
+            else
+            {
+                if (AlreadyExists())
+                {
+                    MessageBox.Show($"Wallet with name '{Name}' already exists");
+                }
+                else 
+                {
+                    wallet = new lab.Wallet(CurrentInfo.Customer, Name, StartBalance, Description, BasicCurrency);
+                    CurrentInfo.Customer.AddWallet(wallet);
+                    _goToAccount.Invoke();
+                }
+                
+            }
+
+           
         }
 
+        private bool AlreadyExists()
+        {
+            foreach (lab.Wallet w in CurrentInfo.Customer.GetWallets())
+            {
+                if (Name == w.Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
        
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -34,6 +34,7 @@
             <Button Width="90" Height="40" 
                     HorizontalAlignment="Right" 
                     FontSize="15"                     
+                    Background="#d7c6cf"
                     Command="{Binding RemoveWalletCommand}">Remove</Button>
         </StackPanel>
     </Grid>

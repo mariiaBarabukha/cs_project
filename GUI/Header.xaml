@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:GUI"
              mc:Ignorable="d" 
              >
-    <Border Background="Orange">
-    
-    <TextBlock HorizontalAlignment="Center" FontSize="30">Our company name</TextBlock>
+    <Border Background="#a2798f">
+        <StackPanel>
+            
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+               FontSize="30">Our company name</TextBlock>
+        </StackPanel>
+        
     </Border>
 </UserControl>
