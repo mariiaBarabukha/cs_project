@@ -52,7 +52,7 @@ namespace GUI.Wallets
             //_service = new WalletService();
            // UserForTest user = new UserForTest();
             customer = CurrentInfo.Customer;
-            customer.AddWallet("w1", 100, "first", "USD");
+            //customer.AddWallet("w1", 100, "first", "USD");
             //customer.AddWallet("w2", 110, "Second", "USD");
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);

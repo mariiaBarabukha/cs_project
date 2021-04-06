@@ -7,10 +7,9 @@
              mc:Ignorable="d" 
              >
     <Border Background="#a2798f">
-        <StackPanel>
-            
+        <StackPanel>            
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-               FontSize="30">Our company name</TextBlock>
+               FontSize="30">Pen and Table</TextBlock>
         </StackPanel>
         
     </Border>

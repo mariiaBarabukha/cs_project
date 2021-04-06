@@ -50,6 +50,7 @@ namespace GUI.Authentication
 
         public SignInViewModel(Action gotoSignUp, Action goToWallet)
         {
+            //2
             SignInCommand = new DelegateCommand(SignIn, IsSignInEnabled);
             _gotoSignUp = gotoSignUp;
             SignUpCommand = new DelegateCommand(_gotoSignUp);
