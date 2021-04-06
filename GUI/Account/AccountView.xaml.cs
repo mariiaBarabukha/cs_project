@@ -23,10 +23,10 @@ namespace GUI.Account
     public partial class AccountView : UserControl
     {
         AccountViewModel accountViewModel;
-        public AccountView(Action goToAddWallet)
+        public AccountView(Action goToAddWallet, Action goToSignIn)
         {
             InitializeComponent();
-            accountViewModel = new AccountViewModel(goToAddWallet);
+            accountViewModel = new AccountViewModel(goToAddWallet, goToSignIn);
             this.DataContext = accountViewModel;
         }
     }

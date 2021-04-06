@@ -12,6 +12,7 @@ namespace GUI.Account
     {
         Customer customer;
         private Action _goToAddWallet;
+        private Action _goToSignIn;
 
         public string FirstName { get { return customer.FirstName; } }
         public string LastName { get { return customer.LastName; } }
@@ -21,7 +22,8 @@ namespace GUI.Account
         public DelegateCommand AccountCommand { get;  }
 
         public DelegateCommand GoToAddWalletCommand { get; }
-        public AccountViewModel(Action goToAddWallet)
+        public DelegateCommand GoToSignIn { get; }
+        public AccountViewModel(Action goToAddWallet, Action goToSignIn)
         {
             GoToAddWalletCommand = new DelegateCommand(GoToAddWallet);
             //UserForTest c = new UserForTest();
@@ -29,6 +31,8 @@ namespace GUI.Account
             //customer.AddWallet("w1", 100, "the first wallet", "USD");
             // _wallets.Add();
             _goToAddWallet = goToAddWallet;
+            _goToSignIn = goToSignIn;
+            GoToSignIn = new DelegateCommand(_goToSignIn);
         }
 
         public void GoToAddWallet()
