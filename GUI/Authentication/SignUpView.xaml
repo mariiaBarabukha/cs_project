@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2">
             <TextBlock Margin="10, 10, 10, 0">Login</TextBlock>
-            <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" Text ="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" Text ="{Binding Login, UpdateSourceTrigger=LostFocus}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
             <TextBlock Margin="10, 10, 10, 0">Password</TextBlock>
