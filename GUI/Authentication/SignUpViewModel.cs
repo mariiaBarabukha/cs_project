@@ -100,17 +100,13 @@ namespace GUI.Authentication
             }
             set
             {
-                //how to check email without losing focus?
-                if (_regUser.Email != value && Validity.checkValidityEmail(value))
+                if (_regUser.Email != value)
                 {
                     _regUser.Email = value;
                     OnPropertyChanged();
                     SignUpCommand.RaiseCanExecuteChanged();
                 }
-                else
-                {
-                    MessageBox.Show("You are not allowed to use this email");
-                }
+                
             }
         }
 
@@ -159,7 +155,7 @@ namespace GUI.Authentication
 
         private void SignUp()
         {
-            if (!loginTaken)
+            if (!loginTaken && Validity.checkValidityEmail(Email))
             {
 
                 var authService = new AuthenticationService();
@@ -175,21 +171,31 @@ namespace GUI.Authentication
                 }
 
                 MessageBox.Show($"User successfully registered. Please sign in");
+                StreamReader sr = new StreamReader(@"..\..\..\DataBase\ourCustomers.txt");
+                int temp = sr.Read();
+                sr.Close();
+
                 StreamWriter sw = new StreamWriter(@"..\..\..\DataBase\ourCustomers.txt", true);
 
-                sw.Write($"\n{_regUser.Login} {_regUser.Password} {user.FirstName} {user.LastName} {user.Email}");
+                if (temp == -1)
+                {
+                    sw.Write($"{_regUser.Login} {_regUser.Password} {user.FirstName} {user.LastName} {user.Email}");
+                }
+                else
+                {
+                    sw.Write($"\n{_regUser.Login} {_regUser.Password} {user.FirstName} {user.LastName} {user.Email}");
+                }
+
                 sw.Close();
                 _gotoSignIn.Invoke();
             }
             else
             {
-                MessageBox.Show("Change your login");
+                if (loginTaken) MessageBox.Show("Change your login");
+                else MessageBox.Show("You should use a proper email");
             }
 
         }
-
-        
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

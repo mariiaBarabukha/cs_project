@@ -85,6 +85,8 @@ namespace GUI.Users
             Email = email;
             Login = authUser.Login;
 
+            sr.Close();
+
         }
 
 

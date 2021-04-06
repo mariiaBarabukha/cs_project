@@ -43,7 +43,7 @@
         </Grid>
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
             <TextBlock Margin="10, 10, 10, 0">Email</TextBlock>
-            <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" Text="{Binding Email, UpdateSourceTrigger=LostFocus}"></TextBox>
+            <TextBox Width="300" Margin="10" HorizontalAlignment="Stretch" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <Grid Grid.Row ="4">
             <Grid.ColumnDefinitions>
