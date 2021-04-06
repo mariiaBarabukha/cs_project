@@ -1,11 +1,9 @@
 ﻿using Prism.Commands;
 using System;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using GUI.Users;
-using lab;
 using GUI.DataBase;
 
 namespace GUI.Authentication
@@ -84,15 +82,6 @@ namespace GUI.Authentication
                 lab.Customer ourCustomer = new lab.Customer(user.FirstName, user.LastName, user.Email);
                 CurrentInfo.Customer = ourCustomer;
 
-                //string fileName = @"ourCustomers.txt";
-                //string path = Path.GetFullPath(fileName);
-                //StreamWriter sw = new StreamWriter(@path, true);
-
-                //sw.Write("zhopa");
-                //sw.Close();
-
-                //testAppliance below
-                MessageBox.Show($"{ourCustomer.LastName} {ourCustomer.FirstName} {ourCustomer.Email}");
                 _goToWallet.Invoke();
             }
         }
