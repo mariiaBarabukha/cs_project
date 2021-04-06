@@ -26,15 +26,5 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var b = (Button)sender;
-            b.Background = Brushes.Red;
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
