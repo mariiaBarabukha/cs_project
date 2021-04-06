@@ -5,9 +5,7 @@ using GUI.Wallet;
 
 namespace GUI
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
+    
     public partial class MainView : UserControl
     {
 
@@ -29,7 +27,7 @@ namespace GUI
 
         public void GoToAccount()
         {
-            Content = new AccountView(GoToAddWallet);
+            Content = new AccountView(GoToAddWallet, GotoSignIn);
         }
 
         public void GoToAddWallet()
