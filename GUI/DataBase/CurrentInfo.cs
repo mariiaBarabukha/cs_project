@@ -1,8 +1,5 @@
-﻿using GUI.Users;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace GUI.DataBase
@@ -35,7 +32,7 @@ namespace GUI.DataBase
             foreach (string line in walletsHandler.Records)
             {
                 string[] w = line.Split(' ');
-                MessageBox.Show(w[0]);
+                //MessageBox.Show(w[0]);
                 
                 lab.Wallet wal = new lab.Wallet(_customer, w[1], Convert.ToDouble(w[2]), w[3], w[4]);
                 _wallets.Add(wal);

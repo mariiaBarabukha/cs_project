@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Lab;
 
 namespace GUI.Wallet
 {
@@ -83,11 +84,15 @@ namespace GUI.Wallet
 
             set
             {
-                if(wallet.BasicCurrency != value)
+                if(wallet.BasicCurrency != value && Validity.checkValidityCurrency(value))
                 {
                     wallet.BasicCurrency = value;
                     OnPropertyChanged();
                     AddCommand.RaiseCanExecuteChanged();
+                }
+                else
+                {
+                    MessageBox.Show("Enter proper currency.");
                 }
                 
             }
