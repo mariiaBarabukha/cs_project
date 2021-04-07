@@ -78,7 +78,7 @@ namespace GUI.Authentication
                     MessageBox.Show($"Sign in failed: {ex.Message}");
                     return;
                 }
-                MessageBox.Show($"Sign in was successful for user {user.FirstName} {user.LastName}");
+                MessageBox.Show($"Sign in was successful for user {user.FirstName} {user.LastName} {user.Email}");
                 lab.Customer ourCustomer = new lab.Customer(user.FirstName, user.LastName, user.Email);
                 CurrentInfo.Customer = ourCustomer;
 

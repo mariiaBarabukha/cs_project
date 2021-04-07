@@ -134,6 +134,18 @@ namespace lab{
             }
         }
 
+        public Wallet GetWalletByName(string s)
+        {
+            foreach (Wallet w in wallets)
+            {
+                if (s == w.Name)
+                {
+                    return w;
+                }
+            }
+            return null;
+        }
+
             
     }
 }

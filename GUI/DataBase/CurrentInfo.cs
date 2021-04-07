@@ -1,8 +1,5 @@
-﻿using GUI.Users;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace GUI.DataBase
@@ -29,16 +26,19 @@ namespace GUI.DataBase
         static WalletsHandler walletsHandler;
         public static void getWalletsFromDB()
         {
-
+            _wallets = new List<lab.Wallet>();
+            MessageBox.Show(_customer.Email);
             walletsHandler = new WalletsHandler(_customer.Email);
+            walletsHandler.findRecords();
            // MessageBox.Show(walletsHandler.Records[0]);
             foreach (string line in walletsHandler.Records)
             {
                 string[] w = line.Split(' ');
-                MessageBox.Show(w[0]);
-                
+                //MessageBox.Show($"{w[0]}, {w[1]}, {Convert.ToDouble(w[2])}, {w[3]}");
                 lab.Wallet wal = new lab.Wallet(_customer, w[1], Convert.ToDouble(w[2]), w[3], w[4]);
+                _customer.AddWallet(wal);
                 _wallets.Add(wal);
+
             }
             //return _customer.GetWallets();
         }
@@ -48,9 +48,18 @@ namespace GUI.DataBase
             walletsHandler.AddRecord(w);
         }
 
-        public static void Remove(lab.Wallet wallet)
+        public static void Remove(string name)
         {
-            walletsHandler.Remove(wallet);
+            walletsHandler.Remove(name);
+        }
+
+        public static void Change(string name_old, string name_new)
+        {
+            MessageBox.Show($"{name_old} {name_new}");   
+            lab.Wallet w = _customer.GetWalletByName(name_old);
+            walletsHandler.Remove(name_old);
+            w.Name = name_new;
+            walletsHandler.AddRecord(w);
         }
     }
 }

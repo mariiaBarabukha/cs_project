@@ -1,1 +1,2 @@
-m@m.m t2 0, d, d
+m@m.m f 0 f USD
+m@m.m dd 0 dd USD

@@ -31,11 +31,21 @@
             <TextBox Text="{Binding CurrentWallet.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock>Balance</TextBlock>
             <TextBox Text="{Binding CurrentWallet.Balance, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Button Width="90" Height="40" 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="120" Height="40" 
+                    HorizontalAlignment="Right" 
+                    FontSize="15"          
+                    Margin="10"
+                    Background="#d7c6cf"
+                    Command="{Binding SubmitWalletCommand}">Submit changes</Button>
+                <Button Width="120" Height="40" 
                     HorizontalAlignment="Right" 
                     FontSize="15"                     
+                        Margin="10"
                     Background="#d7c6cf"
                     Command="{Binding RemoveWalletCommand}">Remove</Button>
+            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </UserControl>

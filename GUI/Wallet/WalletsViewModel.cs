@@ -21,6 +21,7 @@ namespace GUI.Wallets
         public ObservableCollection<WalletInfo> Wallets { get; set; }
 
         private Action _goToAddWallet;
+        private string prev = "";
         public WalletInfo CurrentWallet {
             get
             {
@@ -28,10 +29,14 @@ namespace GUI.Wallets
             }
             set
             {
+                if(_currentWallet!=null)
+                    prev = _currentWallet.Name;
                 _currentWallet = value;
                 RaisePropertyChanged();
             }
         }
+
+        
         public Customer Customer { get => customer; set => customer = value; }
 
         public WalletNavigatableTypes Type
@@ -45,7 +50,9 @@ namespace GUI.Wallets
         private Customer customer;
 
         public DelegateCommand RemoveWalletCommand { get; }
-        
+        public DelegateCommand SubmitWalletCommand { get; }
+
+
         public WalletsViewModel()
         {
             
@@ -53,11 +60,12 @@ namespace GUI.Wallets
            // UserForTest user = new UserForTest();
             customer = CurrentInfo.Customer;
             CurrentInfo.getWalletsFromDB();
+           // Wallets = new ObservableCollection<WalletInfo>();
             //customer.AddWallet("w1", 100, "first", "USD");
             //customer.AddWallet("w2", 110, "Second", "USD");
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);
-
+            //SubmitWalletCommand = new DelegateCommand(Submit);
             foreach (var wallet in CurrentInfo.Wallets)
             {
                 Wallets.Add(new WalletInfo(wallet));
@@ -68,12 +76,19 @@ namespace GUI.Wallets
         {
             if (CurrentWallet != null)
             {
-                CurrentInfo.Customer.RemoveWallet(CurrentWallet.Name);
+                CurrentInfo.Remove(CurrentWallet.Name);
                 Wallets.Remove(CurrentWallet);
                 CurrentWallet = null;
             }
             
            
+        }
+
+        public void Submit()
+        {
+          //  if(prev!="")
+             //   CurrentInfo.Change(prev,_currentWallet.Name);
+            
         }
 
        

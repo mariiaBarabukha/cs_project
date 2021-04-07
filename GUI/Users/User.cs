@@ -73,7 +73,7 @@ namespace GUI.Users
 
             temp = sr.Read();
 
-            while (Convert.ToChar(temp) != ' ')
+            while (Convert.ToChar(temp) != '\n')
             {
                 email += Convert.ToChar(temp);
                 temp = sr.Read();
