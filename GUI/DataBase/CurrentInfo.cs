@@ -46,6 +46,8 @@ namespace GUI.DataBase
         public static void AddRecord(lab.Wallet w)
         {
             walletsHandler.AddRecord(w);
+            _customer.AddWallet(w);
+            _wallets.Add(w);
         }
 
         public static void Remove(string name)
@@ -53,11 +55,11 @@ namespace GUI.DataBase
             walletsHandler.Remove(name);
         }
 
-        public static void Change(string name_old, string name_new)
+        public static void Change(string name_old,string name_new, double bal_old, double bal_new)
         {
-            MessageBox.Show($"{name_old} {name_new}");   
-            lab.Wallet w = _customer.GetWalletByName(name_old);
-            walletsHandler.Remove(name_old);
+            //MessageBox.Show($"{name_new}");   
+            lab.Wallet w = _customer.GetWalletByName(name_new);
+            walletsHandler.RemoveUseless(name_old,name_new,bal_old,bal_new);
             w.Name = name_new;
             walletsHandler.AddRecord(w);
         }

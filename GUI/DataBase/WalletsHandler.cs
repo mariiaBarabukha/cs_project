@@ -53,24 +53,52 @@ namespace GUI.DataBase
 
         public void Remove(string name)
         {
+            
             MessageBox.Show($"{CurrentInfo.Wallets.Count}");
             lab.Wallet wallet = CurrentInfo.Customer.GetWalletByName(name);
             if (wallet!=null) {
-                string toRemove = $"{_email.Trim()} {wallet.Name} {wallet.Balance} {wallet.Description} {wallet.BasicCurrency}";
-                StreamWriter sw = new StreamWriter(@"..\..\..\DataBase\Wallets.txt");
-                string[] lines = text.Split('\n');
-                foreach (string l in lines)
-                {
-                    if (l == toRemove)
-                    {
-                        continue;
-                    }
-                    sw.WriteLine(l);
-                }
+                removePart(wallet);
                 CurrentInfo.Customer.RemoveWallet(name);
 
-                sw.Close();
+                //sw.Close();
             }
+        }
+
+        public void RemoveUseless(string o, string n, double bo, double bn)
+        {
+            //MessageBox.Show($"{CurrentInfo.Wallets.Count}");
+            lab.Wallet wallet = CurrentInfo.Customer.GetWalletByName(n);
+            wallet.Name = o;
+            wallet.Balance = bo;
+            if (wallet != null)
+            {
+                removePart(wallet);
+                //CurrentInfo.Customer.RemoveWallet(o);
+
+                //sw.Close();
+            }
+            wallet.Name = n;
+            wallet.Balance = bn;
+        }
+
+        private void removePart(lab.Wallet wallet)
+        {
+            string temp = "";
+            string toRemove = $"{_email.Trim()} {wallet.Name} {wallet.Balance} {wallet.Description} {wallet.BasicCurrency}";
+            StreamWriter sw = new StreamWriter(@"..\..\..\DataBase\Wallets.txt");
+            string[] lines = text.Split('\n');
+            foreach (string l in lines)
+            {
+                if (l == toRemove)
+                {
+                    continue;
+                }
+                temp += (l+'\n');
+            }
+            text = temp;
+            //CurrentInfo.Customer.RemoveWallet(name);
+            sw.WriteLine(temp);
+            sw.Close();
         }
     }
 }

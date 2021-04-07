@@ -21,7 +21,8 @@ namespace GUI.Wallets
         public ObservableCollection<WalletInfo> Wallets { get; set; }
 
         private Action _goToAddWallet;
-        private string prev = "";
+        private string prev_n = "";
+        private double prev_b = 0;
         public WalletInfo CurrentWallet {
             get
             {
@@ -29,9 +30,19 @@ namespace GUI.Wallets
             }
             set
             {
-                if(_currentWallet!=null)
-                    prev = _currentWallet.Name;
+                
                 _currentWallet = value;
+                if (_currentWallet != null)
+                {
+                    prev_n = _currentWallet.Name;
+                    prev_b = _currentWallet.Balance;
+                }
+
+                else
+                {
+                    prev_n = "";
+                }
+                    
                 RaisePropertyChanged();
             }
         }
@@ -65,7 +76,7 @@ namespace GUI.Wallets
             //customer.AddWallet("w2", 110, "Second", "USD");
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);
-            //SubmitWalletCommand = new DelegateCommand(Submit);
+            SubmitWalletCommand = new DelegateCommand(Submit);
             foreach (var wallet in CurrentInfo.Wallets)
             {
                 Wallets.Add(new WalletInfo(wallet));
@@ -86,8 +97,8 @@ namespace GUI.Wallets
 
         public void Submit()
         {
-          //  if(prev!="")
-             //   CurrentInfo.Change(prev,_currentWallet.Name);
+            
+            CurrentInfo.Change(prev_n, _currentWallet.Name,prev_b,_currentWallet.Balance);
             
         }
 

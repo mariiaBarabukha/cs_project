@@ -55,7 +55,7 @@ namespace lab
         public List<BalanceState> Income { get => income; set => income = value; }
         public List<BalanceState> Outcome { get => _outcome; set => _outcome = value; }
         public List<Transaction> Transactions { get => transactions; set => transactions = value; }
-        public double Balance { get => _balance; }
+        public double Balance { get => _balance; set => _balance = value; }
 
         public List<Category> GetCategories()
         {
