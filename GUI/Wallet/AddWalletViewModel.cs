@@ -124,6 +124,7 @@ namespace GUI.Wallet
                 {
                     wallet = new lab.Wallet(CurrentInfo.Customer, Name, StartBalance, Description, BasicCurrency);
                     CurrentInfo.Customer.AddWallet(wallet);
+                    CurrentInfo.AddRecord(wallet);
                     _goToAccount.Invoke();
                 }
                 

@@ -52,11 +52,13 @@ namespace GUI.Wallets
             //_service = new WalletService();
            // UserForTest user = new UserForTest();
             customer = CurrentInfo.Customer;
+            CurrentInfo.getWalletsFromDB();
             //customer.AddWallet("w1", 100, "first", "USD");
             //customer.AddWallet("w2", 110, "Second", "USD");
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);
-            foreach (var wallet in customer.GetWallets())
+
+            foreach (var wallet in CurrentInfo.Wallets)
             {
                 Wallets.Add(new WalletInfo(wallet));
             }
@@ -64,8 +66,13 @@ namespace GUI.Wallets
 
         public void Remove()
         {
-            CurrentInfo.Customer.RemoveWallet(CurrentWallet.Name);
-            Wallets.Remove(CurrentWallet);
+            if (CurrentWallet != null)
+            {
+                CurrentInfo.Customer.RemoveWallet(CurrentWallet.Name);
+                Wallets.Remove(CurrentWallet);
+                CurrentWallet = null;
+            }
+            
            
         }
 
