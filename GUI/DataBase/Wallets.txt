@@ -1,1 +1,1 @@
-m@m.m g 0, g, g
+m@m.m t1 1000, ddddd, dddd

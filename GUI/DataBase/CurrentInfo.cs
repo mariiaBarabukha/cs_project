@@ -47,5 +47,10 @@ namespace GUI.DataBase
         {
             walletsHandler.AddRecord(w);
         }
+
+        public static void Remove(lab.Wallet wallet)
+        {
+            walletsHandler.Remove(wallet);
+        }
     }
 }
