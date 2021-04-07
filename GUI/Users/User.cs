@@ -5,6 +5,7 @@ namespace GUI.Users
 {
     public class User
     {
+        
         public User(Guid guid, string firstName, string lastName, string email, string login)
         {
             Guid = guid;
