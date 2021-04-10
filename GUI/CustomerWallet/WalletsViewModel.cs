@@ -89,17 +89,30 @@ namespace GUI.Wallets
                 WalletsHandler handler = new WalletsHandler();
                 handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
                 await handler.Remove(CurrentInfo.Customer.Email, CurrentWallet.Name);
-                
+
+                CurrentInfo.Customer.RemoveWallet(CurrentWallet.Name);
+                Wallets.Remove(CurrentWallet);
+               
+                CurrentWallet = null;
+
             }
             //_reload.Invoke();
            
         }
 
-        public void Submit()
+        public async void Submit()
         {
-            
-           // CurrentInfo.Change(prev_n, _currentWallet.Name,prev_b,_currentWallet.Balance);
-            
+
+            if (CurrentWallet != null)
+            {
+                WalletsHandler handler = new WalletsHandler();
+                handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
+                //var o = CurrentInfo.Customer.GetWalletByName(prev_n);
+                var n = CurrentInfo.Customer.GetWalletByName(CurrentWallet.Name);
+                await handler.Change(n, prev_n);                
+
+            }
+
         }
 
        

@@ -1,5 +1,6 @@
 ﻿
 using GUI.WalletDB;
+using lab;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -109,6 +110,15 @@ namespace GUI.DataBase
             }
 
 
+        }
+
+        public async Task Change(Wallet n, string prev_n)
+        {
+            await Remove(CurrentInfo.Customer.Email, prev_n);
+
+            await write(new DBWallet(CurrentInfo.Customer.Email, n.Name,n.StartBalance, 
+                n.Description, n.BasicCurrency));
+           
         }
 
     }
