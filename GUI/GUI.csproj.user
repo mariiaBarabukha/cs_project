@@ -19,7 +19,7 @@
     <Compile Update="MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Wallet\AddWalletView.xaml.cs">
+    <Compile Update="CustomerWallet\AddWalletView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -31,10 +31,10 @@
     <Compile Update="MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Wallet\WalletBrief.xaml.cs">
+    <Compile Update="CustomerWallet\WalletBrief.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Wallet\WalletsView.xaml.cs">
+    <Compile Update="CustomerWallet\WalletsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -54,13 +54,13 @@
     <Page Update="MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Wallet\AddWalletView.xaml">
+    <Page Update="CustomerWallet\AddWalletView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Wallet\WalletBrief.xaml">
+    <Page Update="CustomerWallet\WalletBrief.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Wallet\WalletsView.xaml">
+    <Page Update="CustomerWallet\WalletsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

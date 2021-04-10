@@ -16,6 +16,7 @@ namespace lab
         List<BalanceState> income = new List<BalanceState>();
         List<BalanceState> _outcome = new List<BalanceState>();
 
+        Customer owner;
         List<Customer> owners = new List<Customer>();
         List<Category> categories = new List<Category>();
 
@@ -23,7 +24,7 @@ namespace lab
 
         public Wallet(Customer owner, string name, double sB, string description, string bC)
         {
-            owners.Add(owner);
+            this.owner = owner;
             while (name == "")
             {
                 Console.WriteLine("Enter a valid name for the wallet.");
@@ -64,7 +65,7 @@ namespace lab
 
         public bool AddCategory(Category category)
         {
-            if (categories.Contains(category) || !owners[0].GetCategories().Contains(category))
+            if (categories.Contains(category) || !owner.GetCategories().Contains(category))
             {
                 return false;
             }
@@ -77,7 +78,7 @@ namespace lab
 
         public bool AddOwner(Customer owner)
         {
-            if (owners.Contains(owner))
+            if (owners.Contains(owner) || this.owner == owner)
             {
                 return false;
             }

@@ -5,6 +5,10 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using GUI.Users;
 using GUI.DataBase;
+using GUI.Services;
+using GUI.WalletDB;
+using lab;
+using System.Threading.Tasks;
 
 namespace GUI.Authentication
 {
@@ -13,6 +17,7 @@ namespace GUI.Authentication
         private AuthenticationUser _authUser = new AuthenticationUser();
         private Action _gotoSignUp;
         private Action _goToWallet;
+        private bool _isEnabled = true;
 
         public string Login
         {
@@ -32,7 +37,7 @@ namespace GUI.Authentication
         {
             get => _authUser.Password;
             set
-            {
+            {                
                 if (_authUser.Password != value)
                 { 
                     _authUser.Password = value;
@@ -45,6 +50,7 @@ namespace GUI.Authentication
         public DelegateCommand SignInCommand { get; }
 
         public DelegateCommand SignUpCommand { get; }
+        public bool IsEnabled { get => _isEnabled; set => _isEnabled = value; }
 
         public SignInViewModel(Action gotoSignUp, Action goToWallet)
         {
@@ -61,7 +67,7 @@ namespace GUI.Authentication
             return !String.IsNullOrWhiteSpace(Login) && !String.IsNullOrWhiteSpace(Password);
         }
 
-        private void SignIn()
+        private async void SignIn()
         {
             if (String.IsNullOrWhiteSpace(Login) || String.IsNullOrWhiteSpace(Password))
                 MessageBox.Show("Login or password is empty");
@@ -71,7 +77,9 @@ namespace GUI.Authentication
                 User user = null;
                 try
                 {
-                    user = authService.Authenticate(_authUser);
+                    IsEnabled = false;
+                    _authUser.Password = PasswordHandler.Code(_authUser.Password);
+                    user = await authService.Authenticate(_authUser);
                 }
                 catch (Exception ex)
                 {
@@ -79,10 +87,22 @@ namespace GUI.Authentication
                     return;
                 }
                 MessageBox.Show($"Sign in was successful for user {user.FirstName} {user.LastName} {user.Email}");
-                lab.Customer ourCustomer = new lab.Customer(user.FirstName, user.LastName, user.Email);
-                CurrentInfo.Customer = ourCustomer;
-
+                CurrentInfo.Customer = new lab.Customer(user.FirstName, user.LastName, user.Email);
+                await LoadAsync();
                 _goToWallet.Invoke();
+            }
+        }
+
+        private async Task LoadAsync()
+        {
+            WalletsHandler walletsHandler = new WalletsHandler();
+            walletsHandler.Filename = @"../../../DataBase/Wallet/Wallets.json";
+            var wallets = await walletsHandler.Find(CurrentInfo.Customer.Email);
+            //var w = new List<Wallet>();
+            foreach (DBWallet wallet in wallets)
+            {
+                CurrentInfo.Customer.AddWallet(new Wallet(CurrentInfo.Customer, wallet.Name,
+                    wallet.Balance, wallet.Description, wallet.BasicCurrency));
             }
         }
 

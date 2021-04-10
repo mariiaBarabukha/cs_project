@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using GUI.Account;
 using GUI.Authentication;
-using GUI.Wallet;
+using GUI.CustomerWallet;
 
 namespace GUI
 {
@@ -34,5 +34,7 @@ namespace GUI
         {
             Content = new AddWalletView(GoToAccount);
         }
+
+       
     }
 }

@@ -6,6 +6,8 @@ using System.Windows;
 using GUI.Users;
 using Prism.Commands;
 using Lab;
+using GUI.Services;
+using GUI.DataBase;
 
 namespace GUI.Authentication
 {
@@ -17,43 +19,15 @@ namespace GUI.Authentication
 
         public string Login
         {
-            get => _regUser.Login;
+            get
+            {
+                return _regUser.Login;
+            }
             set
             {
                 if (_regUser.Login != value)
                 {
-
                     _regUser.Login = value;
-                    
-                }
-
-                StreamReader sr = new StreamReader(@"..\..\..\DataBase\ourCustomers.txt");
-
-                int temp = sr.Read();
-                int i = 0;
-
-                while (temp != -1 && Convert.ToChar(temp) != ' ')
-                {
-                    if (Convert.ToChar(temp) != _regUser.Login.ToCharArray()[i])
-                    {
-                        sr.ReadLine();
-                        i = -1;
-
-                    }
-
-                    temp = sr.Read();
-                    i++;
-
-                }
-
-                if(temp != -1)
-                {
-                    MessageBox.Show("This login is taken.");
-                    loginTaken = true;
-                }
-                else
-                {
-                    loginTaken = false;
                     OnPropertyChanged();
                     SignUpCommand.RaiseCanExecuteChanged();
                 }
@@ -62,7 +36,10 @@ namespace GUI.Authentication
 
         public string Password
         {
-            get => _regUser.Password;
+            get
+            {
+                return _regUser.Password;
+            }
             set
             {
                 if (_regUser.Password != value)
@@ -153,16 +130,17 @@ namespace GUI.Authentication
                 &&!String.IsNullOrWhiteSpace(FirstName);
         }
 
-        private void SignUp()
+        private async void SignUp()
         {
             if (!loginTaken && Validity.checkValidityEmail(Email))
             {
 
                 var authService = new AuthenticationService();
-                User user = null;
+                //User user = null;
                 try
                 {
-                    user = authService.RegisterUser(_regUser);
+                    _regUser.Password = PasswordHandler.Code(_regUser.Password);
+                   await authService.RegisterUser(_regUser);
                 }
                 catch (Exception ex)
                 {
@@ -171,22 +149,7 @@ namespace GUI.Authentication
                 }
 
                 MessageBox.Show($"User successfully registered. Please sign in");
-                StreamReader sr = new StreamReader(@"..\..\..\DataBase\ourCustomers.txt");
-                int temp = sr.Read();
-                sr.Close();
-
-                StreamWriter sw = new StreamWriter(@"..\..\..\DataBase\ourCustomers.txt", true);
-
-                if (temp == -1)
-                {
-                    sw.Write($"{_regUser.Login} {_regUser.Password} {user.FirstName} {user.LastName} {user.Email}");
-                }
-                else
-                {
-                    sw.Write($"\n{_regUser.Login} {_regUser.Password} {user.FirstName} {user.LastName} {user.Email}");
-                }
-
-                sw.Close();
+               
                 _gotoSignIn.Invoke();
             }
             else

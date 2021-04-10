@@ -1,3 +1,0 @@
-rnnnn w1 100 desc UAH
-m@m.m f123 0 f USD
-m@m.m dddd 100 dd USD
