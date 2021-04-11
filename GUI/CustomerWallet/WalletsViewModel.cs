@@ -25,6 +25,7 @@ namespace GUI.Wallets
         private Action _goToAddWallet;
         private string prev_n = "";
         private double prev_b = 0;
+        bool fine = true;
         public WalletInfo CurrentWallet {
             get
             {
@@ -32,19 +33,24 @@ namespace GUI.Wallets
             }
             set
             {
-                
-                _currentWallet = value;
-                if (_currentWallet != null)
+                if (!AlreadyExists())
                 {
-                    prev_n = _currentWallet.Name;
-                    prev_b = _currentWallet.Balance;
-                }
+                    _currentWallet = value;
 
-                else
-                {
-                    prev_n = "";
+                    if (_currentWallet != null)
+                    {
+                        prev_n = _currentWallet.Name;
+                        prev_b = _currentWallet.Balance;
+                    }
+
+                    else
+                    {
+                        prev_n = "";
+                    }
+                    fine = true;
                 }
-                    
+                else
+                    fine = false;
                 RaisePropertyChanged();
             }
         }
@@ -103,7 +109,7 @@ namespace GUI.Wallets
         public async void Submit()
         {
 
-            if (CurrentWallet != null)
+            if (CurrentWallet != null && fine)
             {
                 WalletsHandler handler = new WalletsHandler();
                 handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
@@ -115,7 +121,17 @@ namespace GUI.Wallets
 
         }
 
-       
+       public bool AlreadyExists()
+        {
+            foreach (Wallet w in CurrentInfo.Customer.GetWallets())
+            {
+                if (CurrentWallet.Name == w.Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
     
 
