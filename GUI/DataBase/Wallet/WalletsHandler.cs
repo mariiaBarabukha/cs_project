@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace GUI.DataBase
 {
-    class WalletsHandler
+    public class WalletsHandler
     {
         protected List<DBWallet> records = new List<DBWallet>();
         string filename = "";

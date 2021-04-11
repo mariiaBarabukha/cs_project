@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GUI.WalletDB
 {
-    class DBWallet
+    public class DBWallet
     {
         public DBWallet()
         {

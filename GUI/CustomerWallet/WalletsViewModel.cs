@@ -115,12 +115,6 @@ namespace GUI.Wallets
 
         }
 
-       
-
-    
-
-       
-
         public void ClearSensitiveData()
         {
             throw new NotImplementedException();
