@@ -33,11 +33,29 @@ namespace GUI.Wallets
             } 
         }
 
+        private string setSymbolForCurrency(string c)
+        {
+            string res = "--";
+            switch (c)
+            {
+                case "USD":
+                    res = "$";
+                    break;
+                case "UAH":
+                    res = "₴";
+                    break;
+                case "EUR":
+                    res = "€";
+                    break;
+            }
+            return res;
+        }
+
         public string DisplayName
         {
             get
             {
-                return $"{wallet.Name} (${wallet.StartBalance})";
+                return $"{wallet.Name} ({setSymbolForCurrency(wallet.BasicCurrency)}{wallet.StartBalance})";
             }
         }
         public WalletInfo(lab.Wallet wallet)

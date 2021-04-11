@@ -86,7 +86,7 @@ namespace GUI.Authentication
                     MessageBox.Show($"Sign in failed: {ex.Message}");
                     return;
                 }
-                MessageBox.Show($"Sign in was successful for user {user.FirstName} {user.LastName} {user.Email}");
+                MessageBox.Show($"Sign in was successful for user {user.FirstName} {user.LastName}");
                 CurrentInfo.Customer = new lab.Customer(user.FirstName, user.LastName, user.Email);
                 await LoadAsync();
                 _goToWallet.Invoke();

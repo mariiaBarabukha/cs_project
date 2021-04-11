@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace GUI.Wallets
@@ -33,24 +34,18 @@ namespace GUI.Wallets
             }
             set
             {
-                if (!AlreadyExists())
+                _currentWallet = value;
+
+                if (_currentWallet != null)
                 {
-                    _currentWallet = value;
-
-                    if (_currentWallet != null)
-                    {
-                        prev_n = _currentWallet.Name;
-                        prev_b = _currentWallet.Balance;
-                    }
-
-                    else
-                    {
-                        prev_n = "";
-                    }
-                    fine = true;
+                    prev_n = _currentWallet.Name;
+                    prev_b = _currentWallet.Balance;
                 }
+
                 else
-                    fine = false;
+                {
+                    prev_n = "";
+                }
                 RaisePropertyChanged();
             }
         }
@@ -109,33 +104,44 @@ namespace GUI.Wallets
         public async void Submit()
         {
 
-            if (CurrentWallet != null && fine)
+            if (CurrentWallet != null)
             {
-                WalletsHandler handler = new WalletsHandler();
-                handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
-                //var o = CurrentInfo.Customer.GetWalletByName(prev_n);
-                var n = CurrentInfo.Customer.GetWalletByName(CurrentWallet.Name);
-                await handler.Change(n, prev_n);                
+                if (WalletAlreadyExists())
+                {
+                    MessageBox.Show($"Wallet with name {CurrentWallet.Name} already exists!");
+                    CurrentWallet.Name = prev_n;
+                }
+                else
+                {
+                    WalletsHandler handler = new WalletsHandler();
+                    handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
+                    //var o = CurrentInfo.Customer.GetWalletByName(prev_n);
+                    var n = CurrentInfo.Customer.GetWalletByName(CurrentWallet.Name);
+                    await handler.Change(n, prev_n);
+                }
+                           
 
             }
 
         }
 
-       public bool AlreadyExists()
+        private bool WalletAlreadyExists()
         {
-            foreach (Wallet w in CurrentInfo.Customer.GetWallets())
+            foreach (Wallet w1 in CurrentInfo.Customer.GetWallets())
             {
-                if (CurrentWallet.Name == w.Name)
+                foreach (Wallet w2 in CurrentInfo.Customer.GetWallets())
                 {
-                    return true;
+                    if (w1 != w2)
+                    {
+                        if (w1.Name == w2.Name)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;
         }
-
-    
-
-       
 
         public void ClearSensitiveData()
         {

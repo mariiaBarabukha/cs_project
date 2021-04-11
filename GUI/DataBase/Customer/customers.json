@@ -1,10 +1,1 @@
-[
-  {
-    "Guid": "0007ae21-e0fe-4e5e-883a-dfbbf6ae53d2",
-    "FirstName": "a",
-    "LastName": "b",
-    "Email": "t@t.t",
-    "Login": "a",
-    "Password": "~"
-  },
-  {"Guid":"5f4b0f6e-432a-4f98-9600-bb52e901a5dd","FirstName":"m","LastName":"m","Email":"m@m.m","Login":"m","Password":"w"}]
+[{"Guid":"41eec0b7-75ac-4f11-9b55-635257df9c26","FirstName":"a","LastName":"b","Email":"t@t.t","Login":"a","Password":"~"},{"Guid":"4288d609-17fa-4ba7-8670-495d12bf1f53","FirstName":"m","LastName":"m","Email":"m@m.m","Login":"m","Password":"w"},{"Guid":"98d4c397-ca35-4b30-b4a7-50560616bc33","FirstName":"Daniil","LastName":"Fedorov","Email":"gf2905678@gmail.com","Login":"Weropil","Password":"K|kw|y;\u003C=\u003E"}]
