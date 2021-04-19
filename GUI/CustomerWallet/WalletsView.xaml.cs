@@ -28,5 +28,6 @@ namespace GUI.Wallets
             walletsViewModel = new WalletsViewModel();
             this.DataContext = walletsViewModel;
         }
+
     }
 }

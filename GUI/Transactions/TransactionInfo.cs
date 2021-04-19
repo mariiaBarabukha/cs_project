@@ -101,8 +101,6 @@ namespace GUI.Transactions
         {
             Transaction = transaction;
             Transaction.Category = new Category("test", "", "", "");
-            
-
         }
 
     }

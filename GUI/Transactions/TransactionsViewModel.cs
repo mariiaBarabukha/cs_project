@@ -53,12 +53,12 @@ namespace GUI.Transactions
 
         }
 
-       
-
         public DelegateCommand GoToAccountCommand { get; }
         public DelegateCommand GoToAddTransactionsCommand { get; }
         public DelegateCommand RemoveTransactionCommand { get; }
         public DelegateCommand SubmitTransactionCommand { get; }
+
+        public DelegateCommand ShowInfoCommand { get; }
         public TransactionsViewModel(Action goToAccount, Action goToAddTransactions)
         {
             Transactions = new ObservableCollection<TransactionInfo>();
@@ -68,6 +68,7 @@ namespace GUI.Transactions
             GoToAddTransactionsCommand = new DelegateCommand(GoToAddTransactions);
             RemoveTransactionCommand = new DelegateCommand(Remove);
             SubmitTransactionCommand = new DelegateCommand(Submit);
+            ShowInfoCommand = new DelegateCommand(ShowInfo);
 
            
             foreach (var transaction in CurrentInfo.Customer
@@ -75,8 +76,7 @@ namespace GUI.Transactions
             {
                 Transactions.Add(new TransactionInfo(transaction));
             }
-
-
+            
         }
 
         public async void Remove()
@@ -85,20 +85,24 @@ namespace GUI.Transactions
             {
 
                 TransactionsHandler handler = new TransactionsHandler();
-               // WalletsHandler handler = new WalletsHandler();
                 handler.Filename = @"../../../DataBase/Transaction/transactions.json";
                 await handler.Remove(_currentTransaction.Transaction.Guid);
 
                 CurrentInfo.Wallet.RemoveTransaction(_currentTransaction.Transaction);
                 Transactions.Remove(_currentTransaction);
-                //Wallets.RemoveTr(CurrentWallet);
 
-                //CurrentWallet = null;
                 CurrentTransaction = null;
 
             }
-           
 
+        }
+
+        public void ShowInfo()
+        {
+            if (CurrentInfo.Wallet != null)
+            {
+                MessageBox.Show(CurrentInfo.Wallet.ShowWalletInformation());
+            }
         }
 
         public async void Submit()

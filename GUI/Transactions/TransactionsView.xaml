@@ -52,6 +52,12 @@
                         Margin="10"
                     Background="#d7c6cf"
                     Command="{Binding RemoveTransactionCommand}">Remove</Button>
+                <Button Width="120" Height="40" 
+                        HorizontalAlignment="Right" 
+                        FontSize="15"                     
+                        Margin="10"
+                        Background="#d7c6cf"
+                        Command="{Binding ShowInfoCommand}">Show wallet info</Button>
             </StackPanel>
 
         </StackPanel>

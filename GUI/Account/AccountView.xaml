@@ -31,7 +31,7 @@
                 <Button Name="Name" 
                            VerticalAlignment="Center" 
                            Width="150" Height="20" Margin="10" 
-                           Command="{Binding test, UpdateSourceTrigger=PropertyChanged}"></Button>
+                           Command="{Binding GoToTransactionsCommand, UpdateSourceTrigger=PropertyChanged}">Перейти до транзакцій</Button>
             </StackPanel>
             <TextBlock Name="UserFirstName" Text="{Binding FirstName}"></TextBlock>
             <TextBlock Name="UserLastName" Text="{Binding LastName}"></TextBlock>

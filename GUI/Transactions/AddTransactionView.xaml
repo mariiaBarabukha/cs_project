@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" Width="400">
             <TextBlock>New transaction's sum</TextBlock>
-            <TextBox Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding Sum, UpdateSourceTrigger=LostFocus}"></TextBox>
             <TextBlock>Date</TextBlock>
             <TextBox Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock>Description</TextBlock>

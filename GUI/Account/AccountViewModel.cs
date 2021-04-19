@@ -31,7 +31,7 @@ namespace GUI.Account
 
         public DelegateCommand AccountCommand { get;  }
 
-        public DelegateCommand test { get; }
+        public DelegateCommand GoToTransactionsCommand { get; }
 
         public DelegateCommand GoToAddWalletCommand { get; }
         public DelegateCommand GoToSignIn { get; }
@@ -41,7 +41,7 @@ namespace GUI.Account
             GoToAddWalletCommand = new DelegateCommand(GoToAddWallet);
             customer = CurrentInfo.Customer;
 
-            test = new DelegateCommand(GoToTransactions);
+            GoToTransactionsCommand = new DelegateCommand(GoToTransactions);
             
             
             _goToAddWallet = goToAddWallet;
@@ -75,11 +75,16 @@ namespace GUI.Account
             transactionsHandler.Filename = @"../../../DataBase/Transaction/transactions.json";
             var transactions = await transactionsHandler.Find(CurrentInfo.Wallet.Guid);
             CurrentInfo.Wallet.Transactions = new List<Transaction>();
+            
+            //trouble here?
             foreach (var t in transactions)
             {
-               
-                CurrentInfo.Wallet.MakeTransaction(new Transaction(t.Sum,t.Currency,t.Date,t.Description, t.TransactionGuid));
+                
+                 CurrentInfo.Wallet.MakeTransaction(new Transaction(t.Sum, t.Currency, t.Date, t.Description, t.TransactionGuid));
             }
+            
+
+
         }
 
 

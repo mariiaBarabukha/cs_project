@@ -43,7 +43,7 @@ namespace GUI.CustomerWallet
 
             set
             {
-                if (wallet.StartBalance != (double)value)
+                if (wallet.StartBalance != value)
                 {
                     wallet.StartBalance = (double)value;
                     OnPropertyChanged();
