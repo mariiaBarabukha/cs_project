@@ -116,7 +116,7 @@ namespace lab
 
         public bool MakeTransaction(Transaction transaction)
         {
-            if ((transaction.Sum > 0 || transaction.Sum <= _balance) && categories.Contains(transaction.Category))
+            if (transaction.Sum > 0 || transaction.Sum <= _balance)
             {
                
                 Transactions.Add(transaction);

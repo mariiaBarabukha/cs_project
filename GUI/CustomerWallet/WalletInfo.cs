@@ -9,7 +9,8 @@ namespace GUI.Wallets
     {
         lab.Wallet wallet;
         public string Name { 
-            get { 
+            get 
+            { 
                 return wallet.Name;
             } 
 

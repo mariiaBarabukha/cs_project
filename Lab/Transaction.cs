@@ -2,6 +2,7 @@ using System;
 using Lab;
 using System.Reflection.Metadata;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace lab{
     public class Transaction{
@@ -12,15 +13,19 @@ namespace lab{
         DateTime _date;
         string _file;
 
+        public Transaction(double sum, string currency, DateTime date, string description)
+        {
+            //Validity.checkValidityTransaction(sum);
+            Sum = sum;
+            Currency = currency;
+            Date = date;
+            Description = description;
+
+        }
         public Transaction(double sum, string currency, Category category, DateTime date,
          string description, string file = ""){
             Validity.checkValidityTransaction(sum);
-            Sum = sum;
-            //while (!Validity.checkValidityCurrency(currency))
-            //{
-            //    Console.WriteLine("Enter a basic currency for the wallet(UAH, USD, EUR):");
-            //    currency = Console.ReadLine();
-            //}
+             Sum = sum;
              Currency = currency;
              Category = category;
              Date = date;
@@ -28,12 +33,14 @@ namespace lab{
              File = file;
         }
 
-        public Category Category { get => _category; private set => _category = value; }
+       
+
+        public Category Category { get => _category; set => _category = value; }
         public string Description { get => _description; set => _description = value; }
         public string File { get => _file; set => _file = value; }
-        public double Sum { get => _sum; private set => _sum = value; }
-        public DateTime Date { get => _date; private set => _date = value; }
-        public string Currency { get => _currency; private set => _currency = value; }
+        public double Sum { get => _sum; set => _sum = value; }
+        public DateTime Date { get => _date; set => _date = value; }
+        public string Currency { get => _currency; set => _currency = value; }
 
         public void Show(){
             Console.WriteLine($"{_sum}, {_currency}, {_category}, {_description}, {_date}, {_file}");
