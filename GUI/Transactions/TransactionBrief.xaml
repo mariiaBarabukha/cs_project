@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="GUI.Transactions.TransactionBrief"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Transactions"
+             mc:Ignorable="d" >
+    <Grid>
+        <StackPanel Height="50" Width="370" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Name="Sum" 
+                       VerticalAlignment="Center" 
+                       Width="100" Margin="10" 
+                       Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock Name="Description"
+                       VerticalAlignment="Center" 
+                       Width="80" Margin="10" 
+                       Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock Name="Date" 
+                       VerticalAlignment="Center" 
+                       Width="80" Margin="10" 
+                       Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

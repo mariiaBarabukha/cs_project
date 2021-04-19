@@ -23,13 +23,16 @@ namespace GUI.Wallets
         //Action _reload;
         public ObservableCollection<WalletInfo> Wallets { get; set; }
 
-        private Action _goToDetails;
+        private Action _goToTransactions;
+        private Action _goToAddWallet;
         private string prev_n = "";
         private double prev_b = 0;
         bool fine = true;
         public WalletInfo CurrentWallet {
             get
             {
+                if(_currentWallet != null)
+                    CurrentInfo.Wallet = _currentWallet.Wallet;
                 return _currentWallet;
             }
             set
@@ -65,11 +68,12 @@ namespace GUI.Wallets
 
         public DelegateCommand RemoveWalletCommand { get; }
         public DelegateCommand SubmitWalletCommand { get; }
-        public DelegateCommand DetailsCommand { get; }
+        public DelegateCommand GoToTransactionsCommand { get; }
 
 
         public WalletsViewModel()
         {
+           // LoadAsync();
             // LoadAsync();
 
             //_goToDetails = goToDetails;
@@ -116,7 +120,6 @@ namespace GUI.Wallets
                 {
                     WalletsHandler handler = new WalletsHandler();
                     handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
-                    //var o = CurrentInfo.Customer.GetWalletByName(prev_n);
                     var n = CurrentInfo.Customer.GetWalletByName(CurrentWallet.Name);
                     await handler.Change(n, prev_n);
 

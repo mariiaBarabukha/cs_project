@@ -12,7 +12,8 @@ namespace GUI
 
         protected override INavigatable<WalletNavigatableTypes> CreateViewModel(WalletNavigatableTypes type)
         {
-            return new WalletsViewModel();
+
+            return null;
         }
     }
 }

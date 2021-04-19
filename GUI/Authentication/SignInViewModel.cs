@@ -101,8 +101,8 @@ namespace GUI.Authentication
             //var w = new List<Wallet>();
             foreach (DBWallet wallet in wallets)
             {
-                CurrentInfo.Customer.AddWallet(new Wallet(wallet.WalletGuid,CurrentInfo.Customer, wallet.Name,
-                    wallet.Balance, wallet.Description, wallet.BasicCurrency));
+                CurrentInfo.Customer.AddWallet(new Wallet(CurrentInfo.Customer, wallet.Name,
+                    wallet.Balance, wallet.Description, wallet.BasicCurrency, wallet.WalletGuid));
             }
         }
 

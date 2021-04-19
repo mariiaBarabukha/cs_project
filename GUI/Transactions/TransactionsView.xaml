@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="GUI.Transactions.TransactionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Transactions"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <DataTemplate DataType="{ x:Type local:TransactionInfo}">
+            <local:TransactionBrief></local:TransactionBrief>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Height ="20" Width ="100" Command="{Binding GoToAccountCommand}" HorizontalAlignment="Left">Back to Account</Button>
+        <Button Grid.Row="0" Height ="20" Width ="100" Command="{Binding GoToAddTransactionsCommand}" HorizontalAlignment="Center">Add transaction</Button>
+        <StackPanel Name="WalletsPanel"
+                    Width="400"           
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Center">
+            <ListView ItemsSource="{Binding Transactions}"   
+                      DisplayMemberPath="DisplayTransaction"
+                      SelectedItem="{Binding CurrentTransaction}"></ListView>
+
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock>Sum</TextBlock>
+            <!--vivodit' info pro current transaction-->
+            <TextBox Text="{Binding CurrentTransaction.Sum, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock>Description</TextBlock>
+            <TextBox Text="{Binding CurrentTransaction.Description, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock>Currency</TextBlock>
+            <TextBox Text="{Binding CurrentTransaction.Currency, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock>Date</TextBlock>
+            <TextBox Text="{Binding CurrentTransaction.Date, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="120" Height="40" 
+                        HorizontalAlignment="Right" 
+                        FontSize="15"          
+                        Margin="10"
+                        Background="#d7c6cf"
+                        Command="{Binding SubmitTransactionCommand}">Submit changes</Button>
+                <Button Width="120" Height="40" 
+                    HorizontalAlignment="Right" 
+                    FontSize="15"                     
+                        Margin="10"
+                    Background="#d7c6cf"
+                    Command="{Binding RemoveTransactionCommand}">Remove</Button>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

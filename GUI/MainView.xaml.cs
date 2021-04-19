@@ -2,6 +2,7 @@
 using GUI.Account;
 using GUI.Authentication;
 using GUI.CustomerWallet;
+using GUI.Transactions;
 
 namespace GUI
 {
@@ -27,12 +28,22 @@ namespace GUI
 
         public void GoToAccount()
         {
-            Content = new AccountView(GoToAddWallet, GotoSignIn);
+            Content = new AccountView(GoToAddWallet, GotoSignIn, GoToTransactions);
         }
 
         public void GoToAddWallet()
         {
             Content = new AddWalletView(GoToAccount);
+        }
+
+        public void GoToTransactions()
+        {
+            Content = new TransactionsView(GoToAccount, GoToAddTransaction);
+        }
+
+        public void GoToAddTransaction()
+        {
+            Content = new AddTransactionView(GoToTransactions);
         }
 
        

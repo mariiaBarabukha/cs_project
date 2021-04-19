@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.Account
+namespace GUI.Transactions
 {
     /// <summary>
-    /// Interaction logic for AccountView.xaml
+    /// Interaction logic for TransactionsView.xaml
     /// </summary>
-   
-    public partial class AccountView : UserControl
+    public partial class TransactionsView : UserControl
     {
-        AccountViewModel accountViewModel;
-        public AccountView(Action goToAddWallet, Action goToSignIn, Action goToTransactions)
+        private TransactionsViewModel transactionsViewModel;
+        public TransactionsView(Action goToAccount, Action goToAddTransaction)
         {
+            
             InitializeComponent();
-            accountViewModel = new AccountViewModel(goToAddWallet, goToSignIn, goToTransactions);
-            this.DataContext = accountViewModel;
+            transactionsViewModel = new TransactionsViewModel(goToAccount, goToAddTransaction);
+            this.DataContext = transactionsViewModel;
         }
     }
 }

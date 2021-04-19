@@ -11,6 +11,7 @@ namespace lab{
 
         List<Wallet> wallets = new List<Wallet>();
         List<Category> categories = new List<Category>();
+        
 
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
@@ -93,7 +94,7 @@ namespace lab{
                 }
             }
             if(check)
-                wallets.Add(new Wallet(new Guid(),this, name, sB,description, bC));
+                wallets.Add(new Wallet(this, name, sB,description, bC));
             return check;
         }
 
@@ -107,7 +108,8 @@ namespace lab{
         }
         public List<Wallet> GetWallets(){
             return wallets;
-        }   
+        }
+
 
         public bool ShareWallet(Customer costumer, Wallet wallet){
             if (costumer.GetWallets().Contains(wallet))

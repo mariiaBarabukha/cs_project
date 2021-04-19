@@ -23,8 +23,13 @@ namespace lab
 
         List<Transaction> transactions = new List<Transaction>();
 
-        public Wallet(Guid guid, Customer owner, string name, double sB, string description, string bC)
+        public Wallet( Customer owner, string name, double sB, string description, string bC, Guid guid = default)
         {
+            if (guid == default)
+            {
+                guid = Guid.NewGuid();
+            }
+
             Guid = guid;
             this.owner = owner;
             while (name == "")
@@ -119,7 +124,7 @@ namespace lab
 
         public bool MakeTransaction(Transaction transaction)
         {
-            if ((transaction.Sum > 0 || transaction.Sum <= _balance) && categories.Contains(transaction.Category))
+            if (transaction.Sum > 0 || transaction.Sum <= _balance)
             {
                
                 Transactions.Add(transaction);
@@ -144,11 +149,11 @@ namespace lab
 
         }
 
-        public bool RemoveTransaction(int n)
+        public bool RemoveTransaction(Transaction transaction)
         {
-            if (Transactions[n] != null)
+            if (Transactions.Contains(transaction))
             {
-                Transactions.RemoveAt(n);
+                Transactions.Remove(transaction);
                 return true;
             }
 
@@ -181,6 +186,7 @@ namespace lab
                     Transactions[i].Show();
             }
         }
+
         public void ShowWalletInfo()
         {
             double inc = 0;

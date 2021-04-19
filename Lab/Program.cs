@@ -34,7 +34,7 @@ namespace lab
             customer1.GetWallets()[0].MakeTransaction(100, "UAH", customer1.GetCategories()[0], "second transaction", (DateTime.Now).AddMonths(1));
             customer1.GetWallets()[0].MakeTransaction(-40, "UAH", customer1.GetCategories()[0], "third transaction", (DateTime.Now).AddMonths(2));
             customer1.GetWallets()[0].MakeTransaction(-30, "UAH", customer1.GetCategories()[0], "for testing remove", (DateTime.Now).AddMonths(2));
-            customer1.GetWallets()[0].RemoveTransaction(3);
+            //customer1.GetWallets()[0].RemoveTransaction(3);
             customer1.GetWallets()[0].ShowTransactions();
             customer1.GetWallets()[0].ShowWalletInfo();
 

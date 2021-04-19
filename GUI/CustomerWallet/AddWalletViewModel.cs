@@ -11,7 +11,7 @@ namespace GUI.CustomerWallet
 {
     public class AddWalletViewModel : INotifyPropertyChanged
     {
-        lab.Wallet wallet = new lab.Wallet(new Guid(),CurrentInfo.Customer,"",0,"","");
+        lab.Wallet wallet = new lab.Wallet(CurrentInfo.Customer,"",0,"","");
         Action _goToAccount;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -124,7 +124,7 @@ namespace GUI.CustomerWallet
                 }
                 else 
                 {
-                    wallet = new lab.Wallet(new Guid(),CurrentInfo.Customer, Name, StartBalance, Description, BasicCurrency);
+                    wallet = new lab.Wallet(CurrentInfo.Customer, Name, StartBalance, Description, BasicCurrency);
                     CurrentInfo.Customer.AddWallet(wallet);
                     WalletsHandler handler = new WalletsHandler();
                     handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
