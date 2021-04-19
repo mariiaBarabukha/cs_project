@@ -7,7 +7,7 @@ namespace GUI.Wallets
 {
     public class WalletInfo : BindableBase
     {
-        lab.Wallet wallet;
+        Wallet wallet;
         public string Name { 
             get { 
                 return wallet.Name;
@@ -58,6 +58,9 @@ namespace GUI.Wallets
                 return $"{wallet.Name} ({setSymbolForCurrency(wallet.BasicCurrency)}{wallet.StartBalance})";
             }
         }
+
+        public Wallet Wallet { get => wallet;}
+
         public WalletInfo(lab.Wallet wallet)
         {
             this.wallet = wallet;

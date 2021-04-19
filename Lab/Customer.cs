@@ -93,7 +93,7 @@ namespace lab{
                 }
             }
             if(check)
-                wallets.Add(new Wallet(this, name, sB,description, bC));
+                wallets.Add(new Wallet(new Guid(),this, name, sB,description, bC));
             return check;
         }
 

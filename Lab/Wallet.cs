@@ -6,6 +6,7 @@ namespace lab
 {
     public class Wallet
     {
+       // Guid Guid;
         string _name;
         double _startBalance;
         string _description;
@@ -22,8 +23,9 @@ namespace lab
 
         List<Transaction> transactions = new List<Transaction>();
 
-        public Wallet(Customer owner, string name, double sB, string description, string bC)
+        public Wallet(Guid guid, Customer owner, string name, double sB, string description, string bC)
         {
+            Guid = guid;
             this.owner = owner;
             while (name == "")
             {
@@ -57,6 +59,7 @@ namespace lab
         public List<BalanceState> Outcome { get => _outcome; set => _outcome = value; }
         public List<Transaction> Transactions { get => transactions; set => transactions = value; }
         public double Balance { get => _balance; set => _balance = value; }
+        public Guid Guid { get; set; }
 
         public List<Category> GetCategories()
         {

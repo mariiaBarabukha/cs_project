@@ -23,7 +23,7 @@ namespace GUI.Wallets
         //Action _reload;
         public ObservableCollection<WalletInfo> Wallets { get; set; }
 
-        private Action _goToAddWallet;
+        private Action _goToDetails;
         private string prev_n = "";
         private double prev_b = 0;
         bool fine = true;
@@ -65,13 +65,14 @@ namespace GUI.Wallets
 
         public DelegateCommand RemoveWalletCommand { get; }
         public DelegateCommand SubmitWalletCommand { get; }
+        public DelegateCommand DetailsCommand { get; }
 
 
         public WalletsViewModel()
         {
-           // LoadAsync();
+            // LoadAsync();
 
-
+            //_goToDetails = goToDetails;
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);
             SubmitWalletCommand = new DelegateCommand(Submit);
@@ -118,6 +119,10 @@ namespace GUI.Wallets
                     //var o = CurrentInfo.Customer.GetWalletByName(prev_n);
                     var n = CurrentInfo.Customer.GetWalletByName(CurrentWallet.Name);
                     await handler.Change(n, prev_n);
+
+                    TransactionsHandler transactionsHandler = new TransactionsHandler();
+                    transactionsHandler.Filename = @"../../../DataBase/Transaction/transactions.json";
+                    await transactionsHandler.Find(CurrentWallet.Wallet.Guid);
                 }
                            
 
