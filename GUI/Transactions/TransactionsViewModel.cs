@@ -113,7 +113,12 @@ namespace GUI.Transactions
         public void showTr()
         {
             int i = 0;
-            
+            Transactions = new();
+            foreach (var transaction in CurrentInfo.Customer
+                .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
+            {                
+                Transactions.Add(new TransactionInfo(transaction));
+            }
 
             foreach (var transaction in CurrentInfo.Customer
                 .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
@@ -123,7 +128,7 @@ namespace GUI.Transactions
                 {
                     Transactions.RemoveAt(0);
                 }
-                if (i >= From + 10)
+                if (i > From + 10)
                 {
                     Transactions.RemoveAt(Transactions.Count-1);
                 }
