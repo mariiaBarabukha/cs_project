@@ -19,7 +19,13 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Height ="20" Width ="100" Command="{Binding GoToAccountCommand}" HorizontalAlignment="Left">Back to Account</Button>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Grid.Row="0" Width="100" Height="20"
+                    Command="{Binding ShowFromCommand}">Show from: </Button>
+            <TextBox Margin="0 0 10 0" Text="{Binding From, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
         <Button Grid.Row="0" Height ="20" Width ="100" Command="{Binding GoToAddTransactionsCommand}" HorizontalAlignment="Center">Add transaction</Button>
+        
         <StackPanel Name="WalletsPanel"
                     Width="400"           
                     Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
