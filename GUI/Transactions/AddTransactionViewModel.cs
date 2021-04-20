@@ -116,7 +116,7 @@ namespace GUI.Transactions
                 transaction = new Transaction(Convert.ToDouble(Sum), Currency, Date, Description);
 
                 wallet.MakeTransaction(transaction);
-                MessageBox.Show(wallet.Balance.ToString());
+                //MessageBox.Show(wallet.Balance.ToString());
                 //adding in the db
                 TransactionsHandler handler = new ();
                 handler.Filename = @"../../../DataBase/Transaction/transactions.json";

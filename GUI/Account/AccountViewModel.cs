@@ -58,8 +58,9 @@ namespace GUI.Account
 
         public async void GoToTransactions()
         {
-            if (CurrentInfo.Wallet == null)
+            if (CurrentInfo.Wallet == null || CurrentInfo.Customer.GetWalletByName(CurrentInfo.Wallet.Name) == null)
             {
+                
                 MessageBox.Show("Оберіть гаманець.");
             }
             else

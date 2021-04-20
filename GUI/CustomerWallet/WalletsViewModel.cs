@@ -73,7 +73,7 @@ namespace GUI.Wallets
 
         public WalletsViewModel()
         {
-           
+            _currentWallet = null;
             Wallets = new ObservableCollection<WalletInfo>();
             RemoveWalletCommand = new DelegateCommand(Remove);
             SubmitWalletCommand = new DelegateCommand(Submit);

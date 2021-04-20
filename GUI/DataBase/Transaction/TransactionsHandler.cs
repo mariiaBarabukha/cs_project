@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace GUI.DataBase
 { 
-    class TransactionsHandler
+    public class TransactionsHandler
     {
         protected List<DBTransaction> records = new List<DBTransaction>();
         string filename = "";

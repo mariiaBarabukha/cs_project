@@ -10,7 +10,7 @@ namespace Test1
     public class AuthRegTests
     {
         [Fact]
-        public async void TestRegisterAndAuthenticate()
+        public void TestRegisterAndAuthenticate()
         {
             //this test covers using of UserHandler, customer.json dataBase and mentioned in the name methods of authentication and registration
             //
@@ -30,11 +30,7 @@ namespace Test1
             };
 
             //
-           
-                //await authService.RegisterUser(regUser);
             
-            
-
             //
             var ex = Assert.ThrowsAsync<Exception>(() => authService.RegisterUser(regUser));
             Assert.False(ex.Result.Equals("User already exists"));

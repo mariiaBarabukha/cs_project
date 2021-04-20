@@ -29,6 +29,5 @@ namespace GUI.Transactions
             this.DataContext = transactionsViewModel;
         }
 
-       
     }
 }
