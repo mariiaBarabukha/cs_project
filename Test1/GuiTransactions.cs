@@ -18,7 +18,6 @@ namespace Test1
         {
             //
             var categoriesTest = new Category("one", "", "", "");
-            //var transaction = new lab.Transaction(0, "UAH", categoriesTest, DateTime.Now, "");
             var guiTest = Guid.NewGuid();
 
             //
@@ -27,8 +26,27 @@ namespace Test1
             handler.write(new DBTransaction(guiTest, "", 0, DateTime.Now, "UAH", ""));
 
             ////
-            Assert.NotNull(handler.Find(guiTest, true));
-            //Assert.NotNull(categoriesTest);
+            Assert.NotNull(handler.Find(guiTest, 0, true));
+            
+        }
+
+        [Fact]
+        public void TestRemovingTransactions()
+        {
+            //
+            var categoriesTest = new Category("one", "", "", "");
+            var guiTest = Guid.NewGuid();
+
+            //
+            TransactionsHandler handler = new TransactionsHandler();
+            handler.Filename = @"../../../DataBase/Transaction/transactions.json";
+            handler.write(new DBTransaction(guiTest, "", 0, DateTime.Now, "UAH", ""));
+            handler.Remove(guiTest);
+
+            ////
+            var ex = Assert.Throws<AggregateException>(() => handler.Find(guiTest).Result);
+            Assert.NotNull(ex);
+
         }
     }
 

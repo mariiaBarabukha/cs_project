@@ -10,7 +10,7 @@ namespace Test1
     public class AuthRegTests
     {
         [Fact]
-        public async void TestRegisterAndAuthenticate()
+        public void TestRegisterAndAuthenticate()
         {
             //this test covers using of UserHandler, customer.json dataBase and mentioned in the name methods of authentication and registration
             //
