@@ -75,11 +75,10 @@ namespace GUI.Account
             transactionsHandler.Filename = @"../../../DataBase/Transaction/transactions.json";
             var transactions = await transactionsHandler.Find(CurrentInfo.Wallet.Guid);
             CurrentInfo.Wallet.Transactions = new List<Transaction>();
-            
+            CurrentInfo.Wallet.Balance = CurrentInfo.Wallet.StartBalance;
             //trouble here?
             foreach (var t in transactions)
-            {
-                
+            {                
                  CurrentInfo.Wallet.MakeTransaction(new Transaction(t.Sum, t.Currency, t.Date, t.Description, t.TransactionGuid));
             }
             

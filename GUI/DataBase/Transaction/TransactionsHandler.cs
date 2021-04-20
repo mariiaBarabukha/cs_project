@@ -42,7 +42,7 @@ namespace GUI.DataBase
             return res;
         }
 
-        public async Task<List<DBTransaction>> Find(Guid key, bool byTrKey = false)
+        public async Task<List<DBTransaction>> Find(Guid key, int from = 0, bool byTrKey = false)
         {
             var res = new List<DBTransaction>();
             string t = "";
@@ -56,30 +56,54 @@ namespace GUI.DataBase
 
             if (byTrKey)
             {
-                fByTr(res,key);
+                fByTr(res,key, from);
             }
             else
             {
-                fByWallet(res, key);
+                fByWallet(res, key, from);
             }
            
             return records;
         }
 
-        private void fByWallet(List<DBTransaction> res, Guid key)
+        private void fByWallet(List<DBTransaction> res, Guid key, int from)
         {
+            int i = 0;
             foreach (var u in res
                .Where(obj => obj.WalletGuid == key))
             {
+                i++;
+                if (i < from)
+                {
+                    continue;
+                }
+
+                if (i > 10 + from)
+                {
+                    break;
+                }
+                
                 //MessageBox.Show((string)u["FirstName"]);
                 records.Add(u);
             }
         }
-        private void fByTr(List<DBTransaction> res, Guid key)
+        private void fByTr(List<DBTransaction> res, Guid key, int from)
         {
+            int i = 0;
             foreach (var u in res
                .Where(obj => obj.TransactionGuid == key))
             {
+                i++;
+                if (i < from)
+                {
+
+                    continue;
+                }
+                if (i > 10+from)
+                {
+                    break;
+                }
+               
                 //MessageBox.Show((string)u["FirstName"]);
                 records.Add(u);
             }
@@ -88,13 +112,13 @@ namespace GUI.DataBase
         public async Task Remove(Guid tr)
         {
 
-            var toRemove = await Find(tr, true);
+            var toRemove = await Find(tr,0,true);
             var all = await GetAllAsync();
 
 
             var res = new List<DBTransaction>();
 
-            foreach (DBTransaction db in all)
+            foreach (var db in all)
             {
                 if(toRemove[0] == null)
                     MessageBox.Show("Something went wrong. Please, try again");
@@ -111,6 +135,15 @@ namespace GUI.DataBase
                 await sw.WriteAsync(stringObj);
             }
 
+
+        }
+
+        public async Task Change(lab.Transaction n)
+        {
+            await Remove(n.Guid);
+            var transaction = new DBTransaction(CurrentInfo.Wallet.Guid, n.Description, 
+                n.Sum, n.Date, n.Currency, n.File);
+            await write(transaction);
 
         }
     }

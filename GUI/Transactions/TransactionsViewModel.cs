@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using GUI.DataBase;
+using GUI.WalletDB;
 using GUI.Wallets;
+using lab;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -58,7 +60,24 @@ namespace GUI.Transactions
         public DelegateCommand RemoveTransactionCommand { get; }
         public DelegateCommand SubmitTransactionCommand { get; }
 
+        public DelegateCommand ShowFromCommand { get; }
+
         public DelegateCommand ShowInfoCommand { get; }
+        public int From 
+        {
+            get
+            {
+                return from;
+            }
+
+            set
+            {
+                from = value;
+                RaisePropertyChanged(nameof(from));
+            }
+        }
+
+        int from = 0;
         public TransactionsViewModel(Action goToAccount, Action goToAddTransactions)
         {
             Transactions = new ObservableCollection<TransactionInfo>();
@@ -69,14 +88,36 @@ namespace GUI.Transactions
             RemoveTransactionCommand = new DelegateCommand(Remove);
             SubmitTransactionCommand = new DelegateCommand(Submit);
             ShowInfoCommand = new DelegateCommand(ShowInfo);
+            ShowFromCommand = new DelegateCommand(test); 
 
-           
+            showTr();
+            
+        }
+
+        public void test()
+        {
+            Transactions = new ObservableCollection<TransactionInfo>();
+            MessageBox.Show("a"); 
+        }
+
+        public void showTr()
+        {
+            int i = 0;
+            Transactions = new();
             foreach (var transaction in CurrentInfo.Customer
                 .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
             {
+                i++;
+                if (i < From)
+                {
+                    continue;
+                }
+                if (i > From + 10)
+                {
+                    break;
+                }
                 Transactions.Add(new TransactionInfo(transaction));
             }
-            
         }
 
         public async void Remove()
@@ -107,7 +148,9 @@ namespace GUI.Transactions
 
         public async void Submit()
         {
-
+            TransactionsHandler handler = new TransactionsHandler();
+            handler.Filename = @"../../../DataBase/Transaction/transactions.json";
+            await handler.Change(_currentTransaction.Transaction);
             //if (CurrentWallet != null)
             //{
             //    if (WalletAlreadyExists())
@@ -129,8 +172,20 @@ namespace GUI.Transactions
         }
         public void GoToAccount()
         {
+            SubmitW();
             _goToAccount.Invoke();
         }
+
+        public async void SubmitW()
+        {
+
+            WalletsHandler handler = new WalletsHandler();
+            handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
+            var n = CurrentInfo.Customer.GetWalletByName(CurrentInfo.Wallet.Name);
+            await handler.Change(n, n.Name);
+
+        }
+
 
         public void GoToAddTransactions()
         {

@@ -26,15 +26,16 @@
                 <Image Source="../icons/user.png" Height="40" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" Margin="0 0 0 10"></Image>
-                 <Button Command="{Binding GoToSignIn}" Height="20" 
+                <TextBlock Name="UserFirstName" Text="{Binding FirstName}"></TextBlock>
+                <TextBlock Name="UserLastName" Text="{Binding LastName}"></TextBlock>
+                <Button Command="{Binding GoToSignIn}" Height="20" 
                     Background="#8caba8">Log Out</Button>
                 <Button Name="Name" 
-                           VerticalAlignment="Center" 
+                           VerticalAlignment="Center" Background="#a2798f"
                            Width="150" Height="20" Margin="10" 
-                           Command="{Binding GoToTransactionsCommand, UpdateSourceTrigger=PropertyChanged}">Перейти до транзакцій</Button>
+                           Command="{Binding GoToTransactionsCommand, UpdateSourceTrigger=PropertyChanged}">Go To Transactions</Button>
             </StackPanel>
-            <TextBlock Name="UserFirstName" Text="{Binding FirstName}"></TextBlock>
-            <TextBlock Name="UserLastName" Text="{Binding LastName}"></TextBlock>
+            
         </StackPanel>
 
        

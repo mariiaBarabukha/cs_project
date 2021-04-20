@@ -12,7 +12,7 @@ namespace lab
         string _description;
         string _basicCurrency;
 
-        double _balance;
+       // double Balance;
 
         List<BalanceState> income = new List<BalanceState>();
         List<BalanceState> _outcome = new List<BalanceState>();
@@ -51,7 +51,7 @@ namespace lab
             {
                 categories.Add(c);
             }
-            _balance = _startBalance;
+            Balance = _startBalance;
             categories = owner.GetCategories();
         }
 
@@ -63,7 +63,7 @@ namespace lab
         public List<BalanceState> Income { get => income; set => income = value; }
         public List<BalanceState> Outcome { get => _outcome; set => _outcome = value; }
         public List<Transaction> Transactions { get => transactions; set => transactions = value; }
-        public double Balance { get => _balance; set => _balance = value; }
+        public double Balance { get; set; }
         public Guid Guid { get; set; }
 
         public List<Category> GetCategories()
@@ -97,11 +97,11 @@ namespace lab
         public bool MakeTransaction(double sum, string currency, Category category, string description, DateTime date, string file = "")
         {
             Validity.checkValidityTransaction(sum);
-            if ((sum > 0 || sum <= _balance) && categories.Contains(category))
+            if ((sum > 0 || sum <= Balance) && categories.Contains(category))
             {
                 var transaction = new Transaction(sum, currency, category, date, description, file);
                 Transactions.Add(transaction);
-                _balance += sum;
+                Balance += sum;
                 if (sum < 0)
                 {
                     Outcome.Add(new BalanceState(-sum, date));
@@ -128,7 +128,7 @@ namespace lab
             {
 
 
-                if (transaction.Sum > 0 || transaction.Sum <= _balance)
+                if (transaction.Sum > 0 || transaction.Sum <= Balance)
                 {
 
                     var temp = transaction.Sum;
@@ -170,7 +170,7 @@ namespace lab
                         }
                     }
 
-                    _balance += temp;
+                    Balance += temp;
                     if (transaction.Sum < 0)
                     {
                         Outcome.Add(new BalanceState(-temp, transaction.Date));
@@ -255,7 +255,7 @@ namespace lab
                 }
             }
 
-            Console.WriteLine($"{_balance}, {inc}, {outc}");
+            Console.WriteLine($"{Balance}, {inc}, {outc}");
         }
 
         public string ShowWalletInformation()
@@ -281,7 +281,7 @@ namespace lab
                 }
             }
 
-            return ($"Balance: {_balance}, Income: {inc}, Outcome: {outc}");
+            return ($"Balance: {Balance}, Income: {inc}, Outcome: {outc}");
         }
 
     }

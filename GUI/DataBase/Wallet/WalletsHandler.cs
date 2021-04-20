@@ -1,12 +1,13 @@
 ﻿
 using GUI.WalletDB;
 using lab;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
+
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -24,7 +25,7 @@ namespace GUI.DataBase
         {
             var res = await GetAllAsync();
             res.Add(t);
-            string stringObj = JsonSerializer.Serialize(res);
+            string stringObj = JsonConvert.SerializeObject(res);
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 await sw.WriteAsync(stringObj);
@@ -40,7 +41,7 @@ namespace GUI.DataBase
                 t = await streamReader.ReadToEndAsync();
             }
 
-            res = JsonSerializer.Deserialize<List<DBWallet>>(t);
+            res = JsonConvert.DeserializeObject<List<DBWallet>>(t);
 
             return res;
         }
@@ -57,7 +58,7 @@ namespace GUI.DataBase
                 t = await streamReader.ReadToEndAsync();
             }
 
-            res = JsonSerializer.Deserialize<List<DBWallet>>(t);
+            res = JsonConvert.DeserializeObject<List<DBWallet>>(t);
             if (key2=="")
             {
                 foreach (DBWallet dB in res
@@ -103,7 +104,7 @@ namespace GUI.DataBase
 
             }
             
-            string stringObj = JsonSerializer.Serialize(res);
+            string stringObj = JsonConvert.SerializeObject(res);
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 await sw.WriteAsync(stringObj);
@@ -116,8 +117,8 @@ namespace GUI.DataBase
         {
             await Remove(CurrentInfo.Customer.Email, prev_n);
 
-            await write(new DBWallet(CurrentInfo.Customer.Email, n.Name,n.StartBalance, 
-                n.Description, n.BasicCurrency));
+            await write(new DBWallet(CurrentInfo.Customer.Email, n.Name,n.Balance, 
+                n.Description, n.BasicCurrency, null, n.Guid));
            
         }
 

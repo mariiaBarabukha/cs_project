@@ -28,5 +28,7 @@ namespace GUI.Transactions
             transactionsViewModel = new TransactionsViewModel(goToAccount, goToAddTransaction);
             this.DataContext = transactionsViewModel;
         }
+
+       
     }
 }

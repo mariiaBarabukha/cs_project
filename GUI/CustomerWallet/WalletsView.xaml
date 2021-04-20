@@ -32,12 +32,7 @@
             <TextBlock>Balance</TextBlock>
             <TextBox Text="{Binding CurrentWallet.Balance, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Width="120" Height="40" 
-                        HorizontalAlignment="Right" 
-                        FontSize="15"          
-                        Margin="10"
-                        Background="#d7c6cf"
-                        Command="{Binding GoToTransactionsCommand}">test</Button>
+                
                 <Button Width="120" Height="40" 
                         HorizontalAlignment="Right" 
                         FontSize="15"          
