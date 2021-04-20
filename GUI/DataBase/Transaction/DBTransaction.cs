@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GUI.DataBase
 {
-    class DBTransaction
+    public class DBTransaction
     {
 
         public DBTransaction(Guid w_guid, string description, double sum, DateTime dateTime,

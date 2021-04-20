@@ -30,11 +30,7 @@ namespace Test1
             };
 
             //
-           
-                //await authService.RegisterUser(regUser);
             
-            
-
             //
             var ex = Assert.ThrowsAsync<Exception>(() => authService.RegisterUser(regUser));
             Assert.False(ex.Result.Equals("User already exists"));
