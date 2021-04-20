@@ -12,7 +12,7 @@ namespace lab
         string _description;
         string _basicCurrency;
 
-        double _balance;
+       // double Balance;
 
         List<BalanceState> income = new List<BalanceState>();
         List<BalanceState> _outcome = new List<BalanceState>();
@@ -51,7 +51,7 @@ namespace lab
             {
                 categories.Add(c);
             }
-            _balance = _startBalance;
+            Balance = _startBalance;
             categories = owner.GetCategories();
         }
 
@@ -63,7 +63,7 @@ namespace lab
         public List<BalanceState> Income { get => income; set => income = value; }
         public List<BalanceState> Outcome { get => _outcome; set => _outcome = value; }
         public List<Transaction> Transactions { get => transactions; set => transactions = value; }
-        public double Balance { get => _balance; set => _balance = value; }
+        public double Balance { get; set; }
         public Guid Guid { get; set; }
 
         public List<Category> GetCategories()
@@ -97,11 +97,11 @@ namespace lab
         public bool MakeTransaction(double sum, string currency, Category category, string description, DateTime date, string file = "")
         {
             Validity.checkValidityTransaction(sum);
-            if ((sum > 0 || sum <= _balance) && categories.Contains(category))
+            if ((sum > 0 || sum <= Balance) && categories.Contains(category))
             {
                 var transaction = new Transaction(sum, currency, category, date, description, file);
                 Transactions.Add(transaction);
-                _balance += sum;
+                Balance += sum;
                 if (sum < 0)
                 {
                     Outcome.Add(new BalanceState(-sum, date));
@@ -124,28 +124,73 @@ namespace lab
 
         public bool MakeTransaction(Transaction transaction)
         {
-            if (transaction.Sum > 0 || transaction.Sum <= _balance)
+            if (!Transactions.Contains(transaction))
             {
-               
-                Transactions.Add(transaction);
-                _balance += transaction.Sum;
-                if (transaction.Sum < 0)
+
+
+                if (transaction.Sum > 0 || transaction.Sum <= Balance)
                 {
-                    Outcome.Add(new BalanceState(-transaction.Sum, transaction.Date));
+
+                    var temp = transaction.Sum;
+                    Transactions.Add(transaction);
+                    if (this.BasicCurrency == "UAH")
+                    {
+                        if (transaction.Currency == "USD")
+                        {
+                            temp = transaction.Sum * 27;
+                        }
+
+                        if (transaction.Currency == "EUR")
+                        {
+                            temp = transaction.Sum * 30;
+                        }
+                    }
+                    else if (this.BasicCurrency == "USD")
+                    {
+                        if (transaction.Currency == "UAH")
+                        {
+                            temp = transaction.Sum / 25;
+                        }
+
+                        if (transaction.Currency == "EUR")
+                        {
+                            temp = transaction.Sum * 0.8;
+                        }
+                    }
+                    else
+                    {
+                        if (transaction.Currency == "UAH")
+                        {
+                            temp = transaction.Sum / 30;
+                        }
+
+                        if (transaction.Currency == "USD")
+                        {
+                            temp = transaction.Sum / 1.2;
+                        }
+                    }
+
+                    Balance += temp;
+                    if (transaction.Sum < 0)
+                    {
+                        Outcome.Add(new BalanceState(-temp, transaction.Date));
+                    }
+                    else
+                    {
+                        Income.Add(new BalanceState(temp, transaction.Date));
+                    }
+
+                    return true;
+
                 }
                 else
                 {
-                    Income.Add(new BalanceState(transaction.Sum, transaction.Date));
+                    Console.WriteLine("you don't have enough money or you've entered incorrect category");
+                    return false;
                 }
-
-                return true;
-
             }
-            else
-            {
-                Console.WriteLine("you don't have enough money or you've entered incorrect category");
-                return false;
-            }
+
+            return false;
 
         }
 
@@ -210,7 +255,33 @@ namespace lab
                 }
             }
 
-            Console.WriteLine($"{_balance}, {inc}, {outc}");
+            Console.WriteLine($"{Balance}, {inc}, {outc}");
+        }
+
+        public string ShowWalletInformation()
+        {
+            double inc = 0;
+            double outc = 0;
+
+            for (int i = 0; i < Income.Count; i++)
+            {
+
+                if (DateTime.Now <= Income[i].Date.AddMonths(1))
+                {
+                    inc += Income[i].Sum;
+                }
+            }
+
+            for (int i = 0; i < Outcome.Count; i++)
+            {
+
+                if (DateTime.Now <= Outcome[i].Date.AddMonths(1))
+                {
+                    outc += Outcome[i].Sum;
+                }
+            }
+
+            return ($"Balance: {Balance}, Income: {inc}, Outcome: {outc}");
         }
 
     }

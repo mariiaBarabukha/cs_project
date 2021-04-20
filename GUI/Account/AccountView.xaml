@@ -33,7 +33,7 @@
                 <Button Name="Name" 
                            VerticalAlignment="Center" Background="#a2798f"
                            Width="150" Height="20" Margin="10" 
-                           Command="{Binding test, UpdateSourceTrigger=PropertyChanged}">Go To Transactions</Button>
+                           Command="{Binding GoToTransactionsCommand, UpdateSourceTrigger=PropertyChanged}">Go To Transactions</Button>
             </StackPanel>
             
         </StackPanel>

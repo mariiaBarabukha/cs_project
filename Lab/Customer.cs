@@ -46,10 +46,7 @@ namespace lab{
         }
 
        
-
-// провірити на коректність ім'я та прізвище
        
-
         public bool AddCategory(string name, string description, string color, string icon){
             var check = true;
             foreach(Category c in categories){

@@ -20,17 +20,17 @@ namespace GUI.Transactions
         lab.Transaction transaction = new lab.Transaction(0, "UAH", DateTime.Now, "");
         private Action _goToTransaction;
 
-        public double Sum
+        public string Sum
         {
             get
             {
-                return transaction.Sum;
+                return transaction.Sum.ToString();
             }
             set
             {
-                if (transaction.Sum != (double)value)
+                if (transaction.Sum.ToString() != value)
                 {
-                    transaction.Sum = value;
+                    transaction.Sum = Convert.ToDouble(value);
                     OnPropertyChanged();
                     AddTransaction.RaiseCanExecuteChanged();
                 }
@@ -113,18 +113,16 @@ namespace GUI.Transactions
             }
             else
             {
-                //wallet = new lab.Wallet(CurrentInfo.Customer, Name, StartBalance, Description, BasicCurrency);
-                transaction = new Transaction(Sum, Currency, Date, Description);
+                transaction = new Transaction(Convert.ToDouble(Sum), Currency, Date, Description);
 
                 wallet.MakeTransaction(transaction);
+                MessageBox.Show(wallet.Balance.ToString());
                 //adding in the db
                 TransactionsHandler handler = new ();
                 handler.Filename = @"../../../DataBase/Transaction/transactions.json";
                 await handler.write(new DBTransaction(CurrentInfo.Wallet.Guid, 
-                    Description, Sum, Date, Currency, "NONE"));
-                // CurrentInfo.AddRecord(wallet);
-                MessageBox.Show(wallet.GetTransactions()[0].Description);
-                //MessageBox.Show(wallet.GetTransactions()[0].Description);
+                    Description, Convert.ToDouble(Sum), Date, Currency, "NONE"));
+                
                 _goToTransaction.Invoke();
             }
         }

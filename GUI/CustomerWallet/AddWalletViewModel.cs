@@ -43,7 +43,7 @@ namespace GUI.CustomerWallet
 
             set
             {
-                if (wallet.StartBalance != (double)value)
+                if (wallet.StartBalance != value)
                 {
                     wallet.StartBalance = (double)value;
                     OnPropertyChanged();
@@ -129,7 +129,7 @@ namespace GUI.CustomerWallet
                     WalletsHandler handler = new WalletsHandler();
                     handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
                     await handler.write(new DBWallet(CurrentInfo.Customer.Email, wallet.Name,
-                        wallet.Balance, wallet.Description,wallet.BasicCurrency));
+                        wallet.Balance, wallet.Description,wallet.BasicCurrency, null, wallet.Guid));
                    // CurrentInfo.AddRecord(wallet);
                     _goToAccount.Invoke();
                 }

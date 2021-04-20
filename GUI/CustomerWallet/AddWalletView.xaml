@@ -19,7 +19,7 @@
             <TextBlock>New wallet's name</TextBlock>
             <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock>Start Balance</TextBlock>
-            <TextBox Text="{Binding StartBalance, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding Balance, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock>Description</TextBlock>
             <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock>Basic Currency</TextBlock>

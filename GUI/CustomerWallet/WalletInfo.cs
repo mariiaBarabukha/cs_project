@@ -24,12 +24,12 @@ namespace GUI.Wallets
         { 
             get 
             {
-                return wallet.StartBalance;
+                return wallet.Balance;
             } 
 
             set 
             { 
-                wallet.StartBalance = value;
+                wallet.Balance = value;
                 RaisePropertyChanged(nameof(DisplayName));
             } 
         }
@@ -56,7 +56,7 @@ namespace GUI.Wallets
         {
             get
             {
-                return $"{wallet.Name} ({setSymbolForCurrency(wallet.BasicCurrency)}{wallet.StartBalance})";
+                return $"{wallet.Name} ({setSymbolForCurrency(wallet.BasicCurrency)}{wallet.Balance})";
             }
         }
 

@@ -15,9 +15,13 @@ namespace GUI.WalletDB
 
         public DBWallet(string ownerEmail, string name,double balance,
             string description, string basicCurrency,
-            string[] coownerEmail = null)
+            string[] coownerEmail = null, Guid g = default)
         {
-            WalletGuid = Guid.NewGuid();
+            if(g == default)
+            {
+                g = Guid.NewGuid();
+            }
+            WalletGuid = g;
             OwnerEmail = ownerEmail;
             Name = name;
             Balance = balance;

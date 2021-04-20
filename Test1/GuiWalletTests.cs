@@ -18,7 +18,6 @@ namespace Test1
                 Balance = 120,
                 BasicCurrency = "UAH",
                 WalletGuid = Guid.NewGuid(),
-                CoownerGuids = null,
                 Description = "",
                 Name = "Name",
                 OwnerEmail = "OwnerEmail"
