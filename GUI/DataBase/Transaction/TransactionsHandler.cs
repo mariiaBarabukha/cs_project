@@ -94,7 +94,7 @@ namespace GUI.DataBase
 
             var res = new List<DBTransaction>();
 
-            foreach (DBTransaction db in all)
+            foreach (var db in all)
             {
                 if(toRemove[0] == null)
                     MessageBox.Show("Something went wrong. Please, try again");
@@ -111,6 +111,15 @@ namespace GUI.DataBase
                 await sw.WriteAsync(stringObj);
             }
 
+
+        }
+
+        public async Task Change(lab.Transaction n)
+        {
+            await Remove(n.Guid);
+            var transaction = new DBTransaction(CurrentInfo.Wallet.Guid, n.Description, 
+                n.Sum, n.Date, n.Currency, n.File);
+            await write(transaction);
 
         }
     }

@@ -103,7 +103,9 @@ namespace GUI.Transactions
 
         public async void Submit()
         {
-
+            TransactionsHandler handler = new TransactionsHandler();
+            handler.Filename = @"../../../DataBase/Transaction/transactions.json";
+            await handler.Change(_currentTransaction.Transaction);
             //if (CurrentWallet != null)
             //{
             //    if (WalletAlreadyExists())
