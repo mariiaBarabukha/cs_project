@@ -88,22 +88,10 @@ namespace GUI.Transactions
             RemoveTransactionCommand = new DelegateCommand(Remove);
             SubmitTransactionCommand = new DelegateCommand(Submit);
             ShowInfoCommand = new DelegateCommand(ShowInfo);
-            ShowFromCommand = new DelegateCommand(test); 
+            ShowFromCommand = new DelegateCommand(showTr);
 
-            showTr();
-            
-        }
-
-        public void test()
-        {
-            Transactions = new ObservableCollection<TransactionInfo>();
-            MessageBox.Show("a"); 
-        }
-
-        public void showTr()
-        {
             int i = 0;
-            Transactions = new();
+            //Transactions = new();
             foreach (var transaction in CurrentInfo.Customer
                 .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
             {
@@ -117,6 +105,30 @@ namespace GUI.Transactions
                     break;
                 }
                 Transactions.Add(new TransactionInfo(transaction));
+            }
+
+        }
+
+
+        public void showTr()
+        {
+            int i = 0;
+            
+
+            foreach (var transaction in CurrentInfo.Customer
+                .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
+            {
+                
+                if (i < From)
+                {
+                    Transactions.RemoveAt(0);
+                }
+                if (i >= From + 10)
+                {
+                    Transactions.RemoveAt(Transactions.Count-1);
+                }
+                i++;
+
             }
         }
 

@@ -42,7 +42,7 @@ namespace GUI.DataBase
             return res;
         }
 
-        public async Task<List<DBTransaction>> Find(Guid key, int from = 0, bool byTrKey = false)
+        public async Task<List<DBTransaction>> Find(Guid key, bool byTrKey = false)
         {
             var res = new List<DBTransaction>();
             string t = "";
@@ -56,54 +56,35 @@ namespace GUI.DataBase
 
             if (byTrKey)
             {
-                fByTr(res,key, from);
+                fByTr(res,key);
             }
             else
             {
-                fByWallet(res, key, from);
+                fByWallet(res, key);
             }
            
             return records;
         }
 
-        private void fByWallet(List<DBTransaction> res, Guid key, int from)
+        private void fByWallet(List<DBTransaction> res, Guid key)
         {
-            int i = 0;
+            //int i = 0;
             foreach (var u in res
                .Where(obj => obj.WalletGuid == key))
             {
-                i++;
-                if (i < from)
-                {
-                    continue;
-                }
-
-                if (i > 10 + from)
-                {
-                    break;
-                }
+               
                 
                 //MessageBox.Show((string)u["FirstName"]);
                 records.Add(u);
             }
         }
-        private void fByTr(List<DBTransaction> res, Guid key, int from)
+        private void fByTr(List<DBTransaction> res, Guid key)
         {
-            int i = 0;
+            //int i = 0;
             foreach (var u in res
                .Where(obj => obj.TransactionGuid == key))
             {
-                i++;
-                if (i < from)
-                {
-
-                    continue;
-                }
-                if (i > 10+from)
-                {
-                    break;
-                }
-               
+                              
                 //MessageBox.Show((string)u["FirstName"]);
                 records.Add(u);
             }
@@ -112,7 +93,7 @@ namespace GUI.DataBase
         public async Task Remove(Guid tr)
         {
 
-            var toRemove = await Find(tr,0,true);
+            var toRemove = await Find(tr,true);
             var all = await GetAllAsync();
 
 
