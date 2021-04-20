@@ -34,18 +34,18 @@ namespace GUI.CustomerWallet
                 
             }
         }
-        public double StartBalance 
+        public string StartBalance 
         {
             get
             {
-                return wallet.StartBalance;
+                return wallet.StartBalance.ToString();
             }
 
             set
             {
-                if (wallet.StartBalance != value)
+                if (wallet.StartBalance.ToString() != value)
                 {
-                    wallet.StartBalance = (double)value;
+                    wallet.StartBalance = Convert.ToDouble(value);
                     OnPropertyChanged();
                     AddCommand.RaiseCanExecuteChanged();
                 }
@@ -124,7 +124,7 @@ namespace GUI.CustomerWallet
                 }
                 else 
                 {
-                    wallet = new lab.Wallet(CurrentInfo.Customer, Name, StartBalance, Description, BasicCurrency);
+                    wallet = new lab.Wallet(CurrentInfo.Customer, Name, Convert.ToDouble(StartBalance), Description, BasicCurrency);
                     CurrentInfo.Customer.AddWallet(wallet);
                     WalletsHandler handler = new WalletsHandler();
                     handler.Filename = @"../../../DataBase/Wallet/Wallets.json";

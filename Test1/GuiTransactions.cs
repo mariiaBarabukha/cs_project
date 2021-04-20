@@ -26,7 +26,7 @@ namespace Test1
             handler.write(new DBTransaction(guiTest, "", 0, DateTime.Now, "UAH", ""));
 
             ////
-            Assert.NotNull(handler.Find(guiTest, 0, true));
+            Assert.NotNull(handler.Find(guiTest, true));
             
         }
 

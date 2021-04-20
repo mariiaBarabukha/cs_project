@@ -63,21 +63,22 @@ namespace GUI.Transactions
         public DelegateCommand ShowFromCommand { get; }
 
         public DelegateCommand ShowInfoCommand { get; }
-        public int From 
+        public string From 
         {
             get
             {
-                return from;
+                return from.ToString();
             }
 
             set
             {
-                from = value;
+                from = Convert.ToInt16(value);
                 RaisePropertyChanged(nameof(from));
             }
         }
 
         int from = 0;
+
         public TransactionsViewModel(Action goToAccount, Action goToAddTransactions)
         {
             Transactions = new ObservableCollection<TransactionInfo>();
@@ -92,21 +93,31 @@ namespace GUI.Transactions
 
             int i = 0;
             //Transactions = new();
-            foreach (var transaction in CurrentInfo.Customer
-                .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
+            if (CurrentInfo.Customer.GetWalletByName(CurrentInfo.Wallet.Name) == null)
             {
-                i++;
-                if (i < From)
-                {
-                    continue;
-                }
-                if (i > From + 10)
-                {
-                    break;
-                }
-                Transactions.Add(new TransactionInfo(transaction));
+                MessageBox.Show("Оберіть гаманець");
             }
+            else
+            {
 
+                foreach (var transaction in CurrentInfo.Customer
+                    .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
+                {
+                    i++;
+                    if (i + 1 < Convert.ToInt16(From))
+                    {
+                        continue;
+                    }
+
+                    if (i + 1 > Convert.ToInt16(From) + 10)
+                    {
+                        break;
+                    }
+
+                    Transactions.Add(new TransactionInfo(transaction));
+                }
+
+            }
         }
 
 
@@ -119,11 +130,11 @@ namespace GUI.Transactions
                 .GetWalletByName(CurrentInfo.Wallet.Name).GetTransactions())
             {
                 
-                if (i < From)
+                if (i + 1 < Convert.ToInt16(From))
                 {
                     Transactions.RemoveAt(0);
                 }
-                if (i >= From + 10)
+                if (i + 1 >= Convert.ToInt16(From + 10))
                 {
                     Transactions.RemoveAt(Transactions.Count-1);
                 }
@@ -163,23 +174,7 @@ namespace GUI.Transactions
             TransactionsHandler handler = new TransactionsHandler();
             handler.Filename = @"../../../DataBase/Transaction/transactions.json";
             await handler.Change(_currentTransaction.Transaction);
-            //if (CurrentWallet != null)
-            //{
-            //    if (WalletAlreadyExists())
-            //    {
-            //        MessageBox.Show($"Wallet with name {CurrentWallet.Name} already exists!");
-            //        CurrentWallet.Name = prev_n;
-            //    }
-            //    else
-            //    {
-            //        WalletsHandler handler = new WalletsHandler();
-            //        handler.Filename = @"../../../DataBase/Wallet/Wallets.json";
-            //        var n = CurrentInfo.Customer.GetWalletByName(CurrentWallet.Name);
-            //        await handler.Change(n, prev_n);
-            //    }
-
-
-            //}
+            
 
         }
         public void GoToAccount()
@@ -201,7 +196,7 @@ namespace GUI.Transactions
 
         public void GoToAddTransactions()
         {
-            _goToAddTransactions.Invoke();
+             _goToAddTransactions.Invoke();
         }
 
     }
